@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
+using TeamFinder.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<TeamFinderDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
 
 
 
@@ -38,6 +40,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Configuración del endpoint de SignalR
+app.MapHub<ChatHub>("/chatHub");
 app.Run();
 
 public partial class Program { }
