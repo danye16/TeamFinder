@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\sebas\\Documents\\TeamFinder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\usuariojuegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\usuariojuegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +30,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TeamFinderDbContext.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
@@ -39,7 +43,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "JuegosController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\JuegosController.cs",
               "RelativeDocumentMoniker": "Controllers\\JuegosController.cs",
@@ -48,12 +52,28 @@
               "ViewState": "AgIAABwAAAAAAAAAAADwv18AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T04:57:00.326Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MensajesController.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\MensajesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MensajesController.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\MensajesController.cs",
+              "RelativeToolTip": "Controllers\\MensajesController.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAiwJEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T04:59:03.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UsuarioJuegosController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\UsuarioJuegosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuarioJuegosController.cs",
@@ -63,10 +83,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T04:57:32.633Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
