@@ -223,7 +223,6 @@ C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\TeamFinder.csproj.Up2Date
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\TeamFinder.dll
 C:\Users\sebas\Documents\TeamFinder\obj\Debug\net9.0\refint\TeamFinder.dll
