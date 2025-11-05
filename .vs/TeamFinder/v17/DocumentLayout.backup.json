@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "C:\\Users\\sebas\\Documents\\TeamFinder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\insigniascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\insigniascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\reputacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\reputacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\services\\reputationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:services\\reputationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\models\\usuarioinsignia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuarioinsignia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\models\\insignia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\insignia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\models\\reputacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\reputacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\juegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\juegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +58,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TeamFinderDbContext.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
               "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeToolTip": "Data\\TeamFinderDbContext.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwEEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAiwGIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T04:20:47.597Z",
               "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "JuegosController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\JuegosController.cs",
               "RelativeDocumentMoniker": "Controllers\\JuegosController.cs",
@@ -55,8 +87,109 @@
               "IsPinned": true
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "InsigniasController.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\InsigniasController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InsigniasController.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\InsigniasController.cs",
+              "RelativeToolTip": "Controllers\\InsigniasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAnwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:47:18.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReputacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\ReputacionesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReputacionesController.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\ReputacionesController.cs",
+              "RelativeToolTip": "Controllers\\ReputacionesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:47:05.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:46:50.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReputationService.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Services\\ReputationService.cs",
+              "RelativeDocumentMoniker": "Services\\ReputationService.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Services\\ReputationService.cs",
+              "RelativeToolTip": "Services\\ReputationService.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAiwJQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:46:37.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowCEAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:41:22.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsuarioInsignia.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\UsuarioInsignia.cs",
+              "RelativeDocumentMoniker": "Models\\UsuarioInsignia.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\UsuarioInsignia.cs",
+              "RelativeToolTip": "Models\\UsuarioInsignia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:41:08.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Insignia.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Insignia.cs",
+              "RelativeDocumentMoniker": "Models\\Insignia.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Insignia.cs",
+              "RelativeToolTip": "Models\\Insignia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:27:16.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Reputacion.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Reputacion.cs",
+              "RelativeDocumentMoniker": "Models\\Reputacion.cs",
+              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Models\\Reputacion.cs",
+              "RelativeToolTip": "Models\\Reputacion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T05:27:06.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "MensajesController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\MensajesController.cs",
               "RelativeDocumentMoniker": "Controllers\\MensajesController.cs",
@@ -64,16 +197,11 @@
               "RelativeToolTip": "Controllers\\MensajesController.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAiwJEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:59:03.126Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2025-11-05T04:59:03.126Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "UsuarioJuegosController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\UsuarioJuegosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuarioJuegosController.cs",
@@ -81,8 +209,7 @@
               "RelativeToolTip": "Controllers\\UsuarioJuegosController.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAiwGIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:57:32.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T04:57:32.633Z"
             }
           ]
         }

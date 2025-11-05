@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
+using TeamFinder.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<TeamFinderDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddScoped<IReputationService, ReputationService>();
 
 
 

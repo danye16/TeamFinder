@@ -27,5 +27,10 @@ namespace TeamFinder.Api.Models
         public virtual ICollection<UsuarioJuego> Juegos { get; set; }
         public virtual ICollection<Mensaje> MensajesEnviados { get; set; }
         public virtual ICollection<Mensaje> MensajesRecibidos { get; set; }
+
+        // Propiedades de navegación para reputación
+        public virtual ICollection<Reputacion> EvaluacionesRecibidas { get; set; }
+        public virtual ICollection<Reputacion> EvaluacionesRealizadas { get; set; }
+        public virtual ICollection<UsuarioInsignia> Insignias { get; set; }
     }
 }

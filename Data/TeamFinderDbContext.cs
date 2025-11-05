@@ -15,6 +15,10 @@ namespace TeamFinder.Api.Data
         public DbSet<UsuarioJuego> UsuarioJuegos { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
 
+
+        public DbSet<Reputacion> Reputaciones { get; set; }
+        public DbSet<Insignia> Insignias { get; set; }
+        public DbSet<UsuarioInsignia> UsuarioInsignias { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -61,6 +65,38 @@ namespace TeamFinder.Api.Data
                 .WithMany(u => u.MensajesRecibidos)
                 .HasForeignKey(m => m.DestinatarioId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            // Configuración de Reputacion
+            modelBuilder.Entity<Reputacion>()
+                .HasOne(r => r.Usuario)
+                .WithMany(u => u.EvaluacionesRecibidas)
+                .HasForeignKey(r => r.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Reputacion>()
+                .HasOne(r => r.Evaluador)
+                .WithMany(u => u.EvaluacionesRealizadas)
+                .HasForeignKey(r => r.EvaluadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración de UsuarioInsignia
+            modelBuilder.Entity<UsuarioInsignia>()
+                .HasOne(ui => ui.Usuario)
+                .WithMany(u => u.Insignias)
+                .HasForeignKey(ui => ui.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UsuarioInsignia>()
+                .HasOne(ui => ui.Insignia)
+                .WithMany(i => i.Usuarios)
+                .HasForeignKey(ui => ui.InsigniaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Asegurar que un usuario solo pueda evaluar a otro una vez por match
+            modelBuilder.Entity<Reputacion>()
+                .HasIndex(r => new { r.UsuarioId, r.EvaluadorId })
+                .IsUnique();
         }
     }
 }
