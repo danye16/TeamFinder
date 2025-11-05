@@ -15,6 +15,9 @@ namespace TeamFinder.Api.Data
         public DbSet<UsuarioJuego> UsuarioJuegos { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
 
+        public DbSet<PreferenciaMatching> PreferenciasMatching { get; set; }
+        public DbSet<Match> Matches { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -61,6 +64,39 @@ namespace TeamFinder.Api.Data
                 .WithMany(u => u.MensajesRecibidos)
                 .HasForeignKey(m => m.DestinatarioId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            // Configuración de PreferenciaMatching
+            modelBuilder.Entity<PreferenciaMatching>()
+                .HasOne(p => p.Usuario)
+                .WithMany()
+                .HasForeignKey(p => p.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PreferenciaMatching>()
+                .HasOne(p => p.Juego)
+                .WithMany()
+                .HasForeignKey(p => p.JuegoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configuración de Match
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.Usuario1)
+                .WithMany()
+                .HasForeignKey(m => m.Usuario1Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.Usuario2)
+                .WithMany()
+                .HasForeignKey(m => m.Usuario2Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.Juego)
+                .WithMany()
+                .HasForeignKey(m => m.JuegoId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
