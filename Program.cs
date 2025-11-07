@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
+using TeamFinder.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<TeamFinderDbContext>(options =>
 builder.Services.AddControllers();
 
 
+builder.Services.AddScoped<IGameEventsService, GameEventsService>();
 
 
 var app = builder.Build();

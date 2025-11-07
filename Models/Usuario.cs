@@ -27,5 +27,9 @@ namespace TeamFinder.Api.Models
         public virtual ICollection<UsuarioJuego> Juegos { get; set; }
         public virtual ICollection<Mensaje> MensajesEnviados { get; set; }
         public virtual ICollection<Mensaje> MensajesRecibidos { get; set; }
+
+        // Propiedades de navegación para eventos
+        public virtual ICollection<EventoGaming> EventosOrganizados { get; set; }
+        public virtual ICollection<EventoParticipante> EventosParticipando { get; set; }
     }
 }

@@ -15,6 +15,9 @@ namespace TeamFinder.Api.Data
         public DbSet<UsuarioJuego> UsuarioJuegos { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
 
+        public DbSet<EventoGaming> EventosGaming { get; set; }
+        public DbSet<EventoParticipante> EventoParticipantes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -61,6 +64,39 @@ namespace TeamFinder.Api.Data
                 .WithMany(u => u.MensajesRecibidos)
                 .HasForeignKey(m => m.DestinatarioId)
                 .OnDelete(DeleteBehavior.Restrict);
-        }
+
+
+            // Configuración de EventoGaming
+            modelBuilder.Entity<EventoGaming>()
+                .HasOne(e => e.Juego)
+                .WithMany()
+                .HasForeignKey(e => e.JuegoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EventoGaming>()
+                .HasOne(e => e.Organizador)
+                .WithMany(u => u.EventosOrganizados)
+                .HasForeignKey(e => e.OrganizadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración de EventoParticipante
+            modelBuilder.Entity<EventoParticipante>()
+                .HasOne(ep => ep.Evento)
+                .WithMany(e => e.Participantes)
+                .HasForeignKey(ep => ep.EventoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EventoParticipante>()
+                .HasOne(ep => ep.Usuario)
+                .WithMany(u => u.EventosParticipando)
+                .HasForeignKey(ep => ep.UsuarioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Asegurar que un usuario solo pueda participar una vez en un evento
+            modelBuilder.Entity<EventoParticipante>()
+                .HasIndex(ep => new { ep.EventoId, ep.UsuarioId })
+                .IsUnique();
+        
+    }
     }
 }
