@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
 using TeamFinder.Api.Models;
+using TeamFinder.Api.Hubs;
 
 namespace TeamFinder.Api.Controllers
 {
@@ -10,10 +12,11 @@ namespace TeamFinder.Api.Controllers
     public class MensajesController : ControllerBase
     {
         private readonly TeamFinderDbContext _context;
-
-        public MensajesController(TeamFinderDbContext context)
+        private readonly IHubContext<ChatHub> _hubContext;
+        public MensajesController(TeamFinderDbContext context, IHubContext<ChatHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -46,6 +49,10 @@ namespace TeamFinder.Api.Controllers
         {
             _context.Mensajes.Add(mensaje);
             await _context.SaveChangesAsync();
+
+            // Enviar notificación en tiempo real a través de SignalR
+            await _hubContext.Clients.User(mensaje.DestinatarioId.ToString())
+                .SendAsync("RecibirMensaje", mensaje.RemitenteId, mensaje.Contenido);
 
             return CreatedAtAction(nameof(GetMensaje), new { id = mensaje.Id }, mensaje);
         }
