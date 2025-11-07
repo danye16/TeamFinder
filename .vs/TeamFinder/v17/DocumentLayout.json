@@ -1,30 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sebas\\Documents\\TeamFinder\\",
+  "WorkspaceRootPath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\controllers\\matchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\matchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\usuariojuegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\usuariojuegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\services\\matchingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:services\\matchingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\controllers\\juegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\juegoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\documents\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\models\\juego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\juego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,88 +38,92 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "TeamFinderDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Data\\TeamFinderDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Data\\TeamFinderDbContext.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeToolTip": "Data\\TeamFinderDbContext.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwEEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAiwKoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:20:47.597Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "JuegosController.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\JuegosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\JuegosController.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\JuegosController.cs",
-              "RelativeToolTip": "Controllers\\JuegosController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAADwv18AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:57:00.326Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACsAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T05:11:39.98Z",
+              "WhenOpened": "2025-11-07T04:27:22.7Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Hubs\\ChatHub.cs",
-              "RelativeDocumentMoniker": "Hubs\\ChatHub.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Hubs\\ChatHub.cs",
-              "RelativeToolTip": "Hubs\\ChatHub.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
+              "Title": "MatchesController.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MatchesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MatchesController.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MatchesController.cs",
+              "RelativeToolTip": "Controllers\\MatchesController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwDoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T05:11:29.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2025-11-07T04:18:18.791Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MensajesController.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\MensajesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MensajesController.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\MensajesController.cs",
-              "RelativeToolTip": "Controllers\\MensajesController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAiwDkAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:59:03.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T04:08:40.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAiwGEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T04:07:21.776Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "UsuarioJuegosController.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\UsuarioJuegosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsuarioJuegosController.cs",
-              "ToolTip": "C:\\Users\\sebas\\Documents\\TeamFinder\\Controllers\\UsuarioJuegosController.cs",
-              "RelativeToolTip": "Controllers\\UsuarioJuegosController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAiwGIAAAABAAAAAAAAAA==",
+              "Title": "MatchingService.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\MatchingService.cs",
+              "RelativeDocumentMoniker": "Services\\MatchingService.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\MatchingService.cs",
+              "RelativeToolTip": "Services\\MatchingService.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAwAcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:57:32.633Z"
+              "WhenOpened": "2025-11-07T04:03:47.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Juego.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Juego.cs",
+              "RelativeDocumentMoniker": "Models\\Juego.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Juego.cs",
+              "RelativeToolTip": "Models\\Juego.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T04:03:19.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T03:36:59.71Z"
             }
           ]
         }

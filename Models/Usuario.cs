@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 namespace TeamFinder.Api.Models
 {
     public class Usuario
@@ -14,10 +14,22 @@ namespace TeamFinder.Api.Models
 
         [Required]
         [StringLength(100)]
+        [JsonIgnore]
         public string Contraseña { get; set; }
 
         [StringLength(50)]
         public string SteamId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Pais { get; set; }
+
+        [Required]
+        public int Edad { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string EstiloJuego { get; set; } // casual, pro, competitivo, etc.
 
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
@@ -27,5 +39,10 @@ namespace TeamFinder.Api.Models
         public virtual ICollection<UsuarioJuego> Juegos { get; set; }
         public virtual ICollection<Mensaje> MensajesEnviados { get; set; }
         public virtual ICollection<Mensaje> MensajesRecibidos { get; set; }
+        public virtual ICollection<Reputacion> EvaluacionesRecibidas { get; set; }
+        public virtual ICollection<Reputacion> EvaluacionesRealizadas { get; set; }
+        public virtual ICollection<UsuarioInsignia> Insignias { get; set; }
+        public virtual ICollection<EventoGaming> EventosOrganizados { get; set; }
+        public virtual ICollection<EventoParticipante> EventosParticipando { get; set; }
     }
 }

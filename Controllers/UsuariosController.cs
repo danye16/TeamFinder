@@ -19,6 +19,7 @@ namespace TeamFinder.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
+            // El [JsonIgnore] en el modelo se encargará de ocultar la contraseña
             return await _context.Usuarios.ToListAsync();
         }
 
@@ -32,11 +33,12 @@ namespace TeamFinder.Api.Controllers
                 return NotFound();
             }
 
+            // La contraseña no se incluirá en la respuesta gracias a [JsonIgnore]
             return usuario;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario) // Ahora recibe un Usuario directamente
         {
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
@@ -45,7 +47,7 @@ namespace TeamFinder.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario) // Ahora recibe un Usuario directamente
         {
             if (id != usuario.Id)
             {

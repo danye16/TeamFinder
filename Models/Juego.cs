@@ -20,5 +20,7 @@ namespace TeamFinder.Api.Models
 
         // Propiedades de navegación
         public virtual ICollection<UsuarioJuego> Usuarios { get; set; }
+        public virtual ICollection<PreferenciaMatching> PreferenciasMatching { get; set; }
+        public virtual ICollection<EventoGaming> Eventos { get; set; }
     }
 }

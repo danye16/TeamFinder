@@ -1,1 +1,1403 @@
-[]
+[
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEventos",
+    "RelativePath": "api/EventosGaming",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoGaming, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "PostEvento",
+    "RelativePath": "api/EventosGaming",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "evento",
+        "Type": "TeamFinder.Api.Models.EventoGaming",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.EventoGaming",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "AbandonarEvento",
+    "RelativePath": "api/EventosGaming/{eventoId}/abandonar/{usuarioId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "ConfirmarParticipacion",
+    "RelativePath": "api/EventosGaming/{eventoId}/confirmar/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "confirmado",
+        "Type": "System.Boolean",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetParticipantes",
+    "RelativePath": "api/EventosGaming/{eventoId}/participantes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoParticipante, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "UnirseEvento",
+    "RelativePath": "api/EventosGaming/{eventoId}/unirse/{usuarioId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEvento",
+    "RelativePath": "api/EventosGaming/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.EventoGaming",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "PutEvento",
+    "RelativePath": "api/EventosGaming/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "evento",
+        "Type": "TeamFinder.Api.Models.EventoGaming",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "DeleteEvento",
+    "RelativePath": "api/EventosGaming/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEventosPorJuego",
+    "RelativePath": "api/EventosGaming/juego/{juegoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "juegoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoGaming, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEventosOrganizadosPorUsuario",
+    "RelativePath": "api/EventosGaming/organizados/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoGaming, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEventosParticipandoPorUsuario",
+    "RelativePath": "api/EventosGaming/participando/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoGaming, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
+    "Method": "GetEventosProximos",
+    "RelativePath": "api/EventosGaming/proximos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.EventoGaming, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.InsigniasController",
+    "Method": "GetInsigniasDisponibles",
+    "RelativePath": "api/Insignias",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Insignia, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.InsigniasController",
+    "Method": "GetInsigniasUsuario",
+    "RelativePath": "api/Insignias/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.UsuarioInsignia, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.InsigniasController",
+    "Method": "VerificarInsignias",
+    "RelativePath": "api/Insignias/verificar/{usuarioId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.JuegosController",
+    "Method": "GetJuegos",
+    "RelativePath": "api/Juegos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Juego, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.JuegosController",
+    "Method": "PostJuego",
+    "RelativePath": "api/Juegos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "juego",
+        "Type": "TeamFinder.Api.Models.Juego",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Juego",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.JuegosController",
+    "Method": "GetJuego",
+    "RelativePath": "api/Juegos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Juego",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.JuegosController",
+    "Method": "PutJuego",
+    "RelativePath": "api/Juegos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "juego",
+        "Type": "TeamFinder.Api.Models.Juego",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.JuegosController",
+    "Method": "DeleteJuego",
+    "RelativePath": "api/Juegos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MatchesController",
+    "Method": "CrearMatch",
+    "RelativePath": "api/Matches",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario1Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "usuario2Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "juegoId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Match",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MatchesController",
+    "Method": "AceptarMatch",
+    "RelativePath": "api/Matches/{matchId}/aceptar/{usuarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "matchId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MatchesController",
+    "Method": "ObtenerMatchesConfirmados",
+    "RelativePath": "api/Matches/confirmados/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Match, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MatchesController",
+    "Method": "EncontrarMatches",
+    "RelativePath": "api/Matches/encontrar/{usuarioId}/{juegoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "juegoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Usuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MatchesController",
+    "Method": "ObtenerMatchesPendientes",
+    "RelativePath": "api/Matches/pendientes/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Match, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "GetMensajes",
+    "RelativePath": "api/Mensajes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Mensaje, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "PostMensaje",
+    "RelativePath": "api/Mensajes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mensaje",
+        "Type": "TeamFinder.Api.Models.Mensaje",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Mensaje",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "GetMensaje",
+    "RelativePath": "api/Mensajes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Mensaje",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "PutMensaje",
+    "RelativePath": "api/Mensajes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "mensaje",
+        "Type": "TeamFinder.Api.Models.Mensaje",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "DeleteMensaje",
+    "RelativePath": "api/Mensajes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "GetConversacion",
+    "RelativePath": "api/Mensajes/conversacion/{usuarioId1}/{usuarioId2}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId1",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuarioId2",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Mensaje, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "MarcarMensajesComoLeidos",
+    "RelativePath": "api/Mensajes/marcar-leidos/{remitenteId}/{destinatarioId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "remitenteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "destinatarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.MensajesController",
+    "Method": "GetMensajesPorUsuario",
+    "RelativePath": "api/Mensajes/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Mensaje, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "GetPreferenciasMatching",
+    "RelativePath": "api/PreferenciasMatching",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.PreferenciaMatching, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "PostPreferenciaMatching",
+    "RelativePath": "api/PreferenciasMatching",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "preferencia",
+        "Type": "TeamFinder.Api.Models.PreferenciaMatching",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.PreferenciaMatching",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "GetPreferenciaMatching",
+    "RelativePath": "api/PreferenciasMatching/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.PreferenciaMatching",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "PutPreferenciaMatching",
+    "RelativePath": "api/PreferenciasMatching/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "preferencia",
+        "Type": "TeamFinder.Api.Models.PreferenciaMatching",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "DeletePreferenciaMatching",
+    "RelativePath": "api/PreferenciasMatching/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.PreferenciasMatchingController",
+    "Method": "GetPreferenciasPorUsuario",
+    "RelativePath": "api/PreferenciasMatching/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.PreferenciaMatching, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.ReputacionesController",
+    "Method": "PostEvaluacion",
+    "RelativePath": "api/Reputaciones",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "evaluacion",
+        "Type": "TeamFinder.Api.Models.Reputacion",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Reputacion",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.ReputacionesController",
+    "Method": "GetEvaluaciones",
+    "RelativePath": "api/Reputaciones/evaluaciones/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Reputacion, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.ReputacionesController",
+    "Method": "GetPuntuacionPromedio",
+    "RelativePath": "api/Reputaciones/puntuacion/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Double",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "GetSeguimientos",
+    "RelativePath": "api/Seguimientos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.SeguirUsuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "PostSeguimiento",
+    "RelativePath": "api/Seguimientos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "seguimiento",
+        "Type": "TeamFinder.Api.Models.SeguirUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.SeguirUsuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "GetSeguimiento",
+    "RelativePath": "api/Seguimientos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.SeguirUsuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "DeleteSeguimiento",
+    "RelativePath": "api/Seguimientos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "GetSeguidores",
+    "RelativePath": "api/Seguimientos/usuario/{usuarioId}/seguidores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Usuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.SeguimientosController",
+    "Method": "GetUsuariosSiguiendo",
+    "RelativePath": "api/Seguimientos/usuario/{usuarioId}/siguiendo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Usuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "GetUsuarioJuegos",
+    "RelativePath": "api/UsuarioJuegos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.UsuarioJuego, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "PostUsuarioJuego",
+    "RelativePath": "api/UsuarioJuegos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioJuego",
+        "Type": "TeamFinder.Api.Models.UsuarioJuego",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.UsuarioJuego",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "GetUsuarioJuego",
+    "RelativePath": "api/UsuarioJuegos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.UsuarioJuego",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "DeleteUsuarioJuego",
+    "RelativePath": "api/UsuarioJuegos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "GetUsuariosPorJuego",
+    "RelativePath": "api/UsuarioJuegos/juego/{juegoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "juegoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Usuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "GetJuegosPorUsuario",
+    "RelativePath": "api/UsuarioJuegos/usuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Juego, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuariosController",
+    "Method": "GetUsuarios",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Api.Models.Usuario, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuariosController",
+    "Method": "PostUsuario",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "TeamFinder.Api.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Usuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuariosController",
+    "Method": "GetUsuario",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TeamFinder.Api.Models.Usuario",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuariosController",
+    "Method": "PutUsuario",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "usuario",
+        "Type": "TeamFinder.Api.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuariosController",
+    "Method": "DeleteUsuario",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

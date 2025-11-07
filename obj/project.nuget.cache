@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9XOSkVdCLcg=",
+  "dgSpecHash": "Zfx9xlcUldo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebas\\Documents\\TeamFinder\\TeamFinder.csproj",
+  "projectFilePath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\TeamFinder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebas\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\sebas\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

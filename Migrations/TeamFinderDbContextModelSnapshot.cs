@@ -22,6 +22,138 @@ namespace TeamFinder.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TeamFinder.Api.Models.EventoGaming", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("EsPublico")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagenUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JuegoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JuegoId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxParticipantes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrganizadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JuegoId");
+
+                    b.HasIndex("JuegoId1");
+
+                    b.HasIndex("OrganizadorId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("EventosGaming");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.EventoParticipante", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Confirmado")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("EventoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.HasIndex("EventoId", "UsuarioId")
+                        .IsUnique();
+
+                    b.ToTable("EventoParticipantes");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Insignia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IconoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("RequisitoCantidadPartidas")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequisitoPuntuacion")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Insignias");
+                });
+
             modelBuilder.Entity("TeamFinder.Api.Models.Juego", b =>
                 {
                     b.Property<int>("Id")
@@ -50,6 +182,46 @@ namespace TeamFinder.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Juegos");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AceptadoPorUsuario1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AceptadoPorUsuario2")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechaMatch")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("JuegoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("MatchConfirmado")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Usuario1Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Usuario2Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JuegoId");
+
+                    b.HasIndex("Usuario1Id");
+
+                    b.HasIndex("Usuario2Id");
+
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("TeamFinder.Api.Models.Mensaje", b =>
@@ -85,6 +257,96 @@ namespace TeamFinder.Migrations
                     b.ToTable("Mensajes");
                 });
 
+            modelBuilder.Entity("TeamFinder.Api.Models.PreferenciaMatching", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Disponibilidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EdadMaxima")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EdadMinima")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Idioma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JuegoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JuegoId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NivelHabilidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotasAdicionales")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SoloMicrófono")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JuegoId");
+
+                    b.HasIndex("JuegoId1");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("PreferenciasMatching");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Reputacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comentario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EvaluadorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaEvaluacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Puntuacion")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EvaluadorId");
+
+                    b.HasIndex("UsuarioId", "EvaluadorId")
+                        .IsUnique();
+
+                    b.ToTable("Reputaciones");
+                });
+
             modelBuilder.Entity("TeamFinder.Api.Models.SeguirUsuario", b =>
                 {
                     b.Property<int>("Id")
@@ -106,7 +368,8 @@ namespace TeamFinder.Migrations
 
                     b.HasIndex("SeguidoId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioId", "SeguidoId")
+                        .IsUnique();
 
                     b.ToTable("Seguimientos");
                 });
@@ -124,8 +387,21 @@ namespace TeamFinder.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("Edad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EstiloJuego")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Pais")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SteamId")
                         .IsRequired()
@@ -140,6 +416,32 @@ namespace TeamFinder.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.UsuarioInsignia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("FechaObtencion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InsigniaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsigniaId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("UsuarioInsignias");
                 });
 
             modelBuilder.Entity("TeamFinder.Api.Models.UsuarioJuego", b =>
@@ -168,6 +470,79 @@ namespace TeamFinder.Migrations
                     b.ToTable("UsuarioJuegos");
                 });
 
+            modelBuilder.Entity("TeamFinder.Api.Models.EventoGaming", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.Juego", "Juego")
+                        .WithMany()
+                        .HasForeignKey("JuegoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Juego", null)
+                        .WithMany("Eventos")
+                        .HasForeignKey("JuegoId1");
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Organizador")
+                        .WithMany()
+                        .HasForeignKey("OrganizadorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", null)
+                        .WithMany("EventosOrganizados")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Juego");
+
+                    b.Navigation("Organizador");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.EventoParticipante", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.EventoGaming", "Evento")
+                        .WithMany("Participantes")
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario")
+                        .WithMany("EventosParticipando")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Evento");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Match", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.Juego", "Juego")
+                        .WithMany()
+                        .HasForeignKey("JuegoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario1")
+                        .WithMany()
+                        .HasForeignKey("Usuario1Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario2")
+                        .WithMany()
+                        .HasForeignKey("Usuario2Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Juego");
+
+                    b.Navigation("Usuario1");
+
+                    b.Navigation("Usuario2");
+                });
+
             modelBuilder.Entity("TeamFinder.Api.Models.Mensaje", b =>
                 {
                     b.HasOne("TeamFinder.Api.Models.Usuario", "Destinatario")
@@ -187,6 +562,48 @@ namespace TeamFinder.Migrations
                     b.Navigation("Remitente");
                 });
 
+            modelBuilder.Entity("TeamFinder.Api.Models.PreferenciaMatching", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.Juego", "Juego")
+                        .WithMany()
+                        .HasForeignKey("JuegoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Juego", null)
+                        .WithMany("PreferenciasMatching")
+                        .HasForeignKey("JuegoId1");
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Juego");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Reputacion", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Evaluador")
+                        .WithMany("EvaluacionesRealizadas")
+                        .HasForeignKey("EvaluadorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario")
+                        .WithMany("EvaluacionesRecibidas")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Evaluador");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("TeamFinder.Api.Models.SeguirUsuario", b =>
                 {
                     b.HasOne("TeamFinder.Api.Models.Usuario", "Seguido")
@@ -202,6 +619,25 @@ namespace TeamFinder.Migrations
                         .IsRequired();
 
                     b.Navigation("Seguido");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.UsuarioInsignia", b =>
+                {
+                    b.HasOne("TeamFinder.Api.Models.Insignia", "Insignia")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("InsigniaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamFinder.Api.Models.Usuario", "Usuario")
+                        .WithMany("Insignias")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Insignia");
 
                     b.Navigation("Usuario");
                 });
@@ -225,13 +661,37 @@ namespace TeamFinder.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("TeamFinder.Api.Models.EventoGaming", b =>
+                {
+                    b.Navigation("Participantes");
+                });
+
+            modelBuilder.Entity("TeamFinder.Api.Models.Insignia", b =>
+                {
+                    b.Navigation("Usuarios");
+                });
+
             modelBuilder.Entity("TeamFinder.Api.Models.Juego", b =>
                 {
+                    b.Navigation("Eventos");
+
+                    b.Navigation("PreferenciasMatching");
+
                     b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("TeamFinder.Api.Models.Usuario", b =>
                 {
+                    b.Navigation("EvaluacionesRealizadas");
+
+                    b.Navigation("EvaluacionesRecibidas");
+
+                    b.Navigation("EventosOrganizados");
+
+                    b.Navigation("EventosParticipando");
+
+                    b.Navigation("Insignias");
+
                     b.Navigation("Juegos");
 
                     b.Navigation("MensajesEnviados");
