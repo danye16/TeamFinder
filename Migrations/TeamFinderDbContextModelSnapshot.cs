@@ -179,6 +179,9 @@ namespace TeamFinder.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("SteamAppId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Juegos");
@@ -265,18 +268,38 @@ namespace TeamFinder.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Disponibilidad")
+                    b.Property<bool>("ComunicacionVoz")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DiasDisponibles")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EdadMaxima")
+                    b.Property<int>("EdadMaximaPreferida")
                         .HasColumnType("int");
 
-                    b.Property<int>("EdadMinima")
+                    b.Property<int>("EdadMinimaPreferida")
                         .HasColumnType("int");
+
+                    b.Property<string>("EstiloJuego")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaActualizacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("HorarioDisponible")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HorasEnJuego")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HorasPorSesion")
+                        .HasColumnType("int");
 
                     b.Property<string>("Idioma")
                         .IsRequired()
@@ -288,6 +311,12 @@ namespace TeamFinder.Migrations
                     b.Property<int?>("JuegoId1")
                         .HasColumnType("int");
 
+                    b.Property<bool>("MicrofonoRequerido")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("MismoPais")
+                        .HasColumnType("bit");
+
                     b.Property<string>("NivelHabilidad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -296,8 +325,17 @@ namespace TeamFinder.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("SoloMicrófono")
-                        .HasColumnType("bit");
+                    b.Property<string>("PaisPreferido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RangoCompetitivo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RolPreferido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");

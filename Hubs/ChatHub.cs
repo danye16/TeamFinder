@@ -5,33 +5,61 @@ namespace TeamFinder.Api.Hubs
 {
     public class ChatHub : Hub
     {
-        public async Task EnviarMensaje(int remitenteId, int destinatarioId, string contenido)
+        public async Task UnirseConversacion(int usuarioId1, int usuarioId2)
         {
-            // Aquí podrías guardar el mensaje en la base de datos
-            // Por simplicidad, solo lo enviamos directamente
+            // Crear un nombre de grupo único para la conversación entre dos usuarios
+            string grupo = ObtenerNombreGrupo(usuarioId1, usuarioId2);
+            await Groups.AddToGroupAsync(Context.ConnectionId, grupo);
 
-            // Envía el mensaje al destinatario específico
-            await Clients.User(destinatarioId.ToString()).SendAsync("RecibirMensaje", remitenteId, contenido);
-
-            // También envía una confirmación al remitente
-            await Clients.Caller.SendAsync("MensajeEnviado", destinatarioId, contenido);
+            await Clients.Group(grupo).SendAsync("UsuarioConectado", Context.ConnectionId);
         }
 
-        public async Task UnirseAlChat(int usuarioId)
+        public async Task SalirConversacion(int usuarioId1, int usuarioId2)
         {
-            // Agrega el usuario a un grupo basado en su ID
+            string grupo = ObtenerNombreGrupo(usuarioId1, usuarioId2);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, grupo);
+
+            await Clients.Group(grupo).SendAsync("UsuarioDesconectado", Context.ConnectionId);
+        }
+
+        public async Task UnirseGrupoUsuario(int usuarioId)
+        {
             await Groups.AddToGroupAsync(Context.ConnectionId, $"Usuario_{usuarioId}");
         }
 
-        public async Task SalirDelChat(int usuarioId)
+        public async Task SalirGrupoUsuario(int usuarioId)
         {
-            // Remueve al usuario del grupo
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, $"Usuario_{usuarioId}");
+        }
+
+        public async Task NotificarEscribiendo(int remitenteId, int destinatarioId, bool escribiendo)
+        {
+            string grupo = ObtenerNombreGrupo(remitenteId, destinatarioId);
+            await Clients.OthersInGroup(grupo).SendAsync("UsuarioEscribiendo", remitenteId, escribiendo);
+        }
+
+        public async Task NotificarMensajeLeido(int mensajeId, int remitenteId, int destinatarioId)
+        {
+            string grupo = ObtenerNombreGrupo(remitenteId, destinatarioId);
+            await Clients.Group(grupo).SendAsync("MensajeLeido", mensajeId);
+        }
+
+        // Método auxiliar para generar un nombre de grupo único para una conversación entre dos usuarios
+        private string ObtenerNombreGrupo(int usuarioId1, int usuarioId2)
+        {
+            // Ordenamos los IDs para que el grupo sea el mismo sin importar el orden
+            return usuarioId1 < usuarioId2 ?
+                $"Conversacion_{usuarioId1}_{usuarioId2}" :
+                $"Conversacion_{usuarioId2}_{usuarioId1}";
+        }
+
+        public override async Task OnConnectedAsync()
+        {
+            await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            // Este método se llama cuando un usuario se desconecta
             await base.OnDisconnectedAsync(exception);
         }
     }

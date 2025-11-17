@@ -1,17 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
-using TeamFinder.Api.Services;
 using TeamFinder.Api.Models;
 
 namespace TeamFinder.Api.Services
 {
     public interface IMatchingService
     {
+        // Métodos existentes que ya tienes
         Task<IEnumerable<Usuario>> EncontrarMatchesAsync(int usuarioId, int juegoId);
+        Task<double> CalcularPorcentajeMatchAsync(PreferenciaMatching pref1, PreferenciaMatching pref2);
+        Task<IEnumerable<MatchResult>> EncontrarMatchesDetalladosAsync(int usuarioId, int juegoId);
+
+        // NUEVOS MÉTODOS que necesita el controlador
+        Task<double> CalcularPorcentajeMatchAsync(int usuarioId1, int usuarioId2, int juegoId);
         Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId);
         Task<bool> AceptarMatchAsync(int matchId, int usuarioId);
+        Task<bool> RechazarMatchAsync(int matchId, int usuarioId);
         Task<IEnumerable<Match>> ObtenerMatchesPendientesAsync(int usuarioId);
         Task<IEnumerable<Match>> ObtenerMatchesConfirmadosAsync(int usuarioId);
+        Task<Match> ObtenerMatchDetalleAsync(int matchId);
+    }
+
+    public class MatchResult
+    {
+        public Usuario Usuario { get; set; }
+        public PreferenciaMatching PreferenciaMatching { get; set; }
+        public double PorcentajeMatch { get; set; }
+        public List<string> RazonesMatch { get; set; }
     }
 
     public class MatchingService : IMatchingService
@@ -23,61 +38,143 @@ namespace TeamFinder.Api.Services
             _context = context;
         }
 
+        public async Task<IEnumerable<MatchResult>> EncontrarMatchesDetalladosAsync(int usuarioId, int juegoId)
+        {
+            var usuarioPreferencia = await _context.PreferenciasMatching
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(p => p.UsuarioId == usuarioId && p.JuegoId == juegoId);
+
+            if (usuarioPreferencia == null)
+                return Enumerable.Empty<MatchResult>();
+
+            var otrasPreferencias = await _context.PreferenciasMatching
+                .Include(p => p.Usuario)
+                .Where(p => p.JuegoId == juegoId && p.UsuarioId != usuarioId)
+                .ToListAsync();
+
+            var matches = new List<MatchResult>();
+
+            foreach (var otraPreferencia in otrasPreferencias)
+            {
+                var porcentajeMatch = await CalcularPorcentajeMatchAsync(usuarioPreferencia, otraPreferencia);
+
+                if (porcentajeMatch >= 60) // Umbral mínimo de 60%
+                {
+                    matches.Add(new MatchResult
+                    {
+                        Usuario = otraPreferencia.Usuario,
+                        PreferenciaMatching = otraPreferencia,
+                        PorcentajeMatch = porcentajeMatch,
+                        RazonesMatch = ObtenerRazonesMatch(usuarioPreferencia, otraPreferencia)
+                    });
+                }
+            }
+
+            return matches.OrderByDescending(m => m.PorcentajeMatch);
+        }
+
+        public async Task<double> CalcularPorcentajeMatchAsync(PreferenciaMatching pref1, PreferenciaMatching pref2)
+        {
+            double puntuacion = 0;
+            double maxPuntuacion = 0;
+
+            // 1. Nivel de habilidad (20%)
+            maxPuntuacion += 20;
+            if (pref1.NivelHabilidad == pref2.NivelHabilidad)
+                puntuacion += 20;
+
+            // 2. Estilo de juego (15%)
+            maxPuntuacion += 15;
+            if (pref1.EstiloJuego == pref2.EstiloJuego)
+                puntuacion += 15;
+
+            // 3. Disponibilidad (20%)
+            maxPuntuacion += 20;
+            if (pref1.DiasDisponibles == pref2.DiasDisponibles && pref1.HorarioDisponible == pref2.HorarioDisponible)
+                puntuacion += 20;
+            else if (TienenDisponibilidadCompatibilidad(pref1, pref2))
+                puntuacion += 10;
+
+            // 4. Geografía (15%)
+            maxPuntuacion += 15;
+            if (!pref1.MismoPais || pref1.Usuario.Pais == pref2.Usuario.Pais)
+                puntuacion += 15;
+
+            // 5. Idioma (10%)
+            maxPuntuacion += 10;
+            if (pref1.Idioma == pref2.Idioma)
+                puntuacion += 10;
+
+            // 6. Preferencias de comunicación (10%)
+            maxPuntuacion += 10;
+            if (pref1.ComunicacionVoz == pref2.ComunicacionVoz)
+                puntuacion += 10;
+
+            // 7. Rol preferido (10%)
+            maxPuntuacion += 10;
+            if (pref1.RolPreferido != pref2.RolPreferido) // Roles diferentes son mejor
+                puntuacion += 10;
+
+            return (puntuacion / maxPuntuacion) * 100;
+        }
+
+        private bool TienenDisponibilidadCompatibilidad(PreferenciaMatching pref1, PreferenciaMatching pref2)
+        {
+            // Lógica para determinar si las disponibilidades son compatibles
+            // Por ejemplo, si ambos están disponibles en fines de semana
+            return (pref1.DiasDisponibles?.Contains("FinDeSemana") == true &&
+                    pref2.DiasDisponibles?.Contains("FinDeSemana") == true) ||
+                   (pref1.HorarioDisponible == pref2.HorarioDisponible);
+        }
+
+        private List<string> ObtenerRazonesMatch(PreferenciaMatching pref1, PreferenciaMatching pref2)
+        {
+            var razones = new List<string>();
+
+            if (pref1.NivelHabilidad == pref2.NivelHabilidad)
+                razones.Add($"Mismo nivel de habilidad: {pref1.NivelHabilidad}");
+
+            if (pref1.EstiloJuego == pref2.EstiloJuego)
+                razones.Add($"Mismo estilo de juego: {pref1.EstiloJuego}");
+
+            if (pref1.Idioma == pref2.Idioma)
+                razones.Add($"Mismo idioma: {pref1.Idioma}");
+
+            if (!pref1.MismoPais || pref1.Usuario.Pais == pref2.Usuario.Pais)
+                razones.Add($"Mismo país: {pref1.Usuario.Pais}");
+
+            if (pref1.RolPreferido != pref2.RolPreferido)
+                razones.Add($"Roles complementarios: {pref1.RolPreferido} + {pref2.RolPreferido}");
+
+            return razones;
+        }
+
         public async Task<IEnumerable<Usuario>> EncontrarMatchesAsync(int usuarioId, int juegoId)
         {
-            // Obtener información del usuario actual
-            var usuarioActual = await _context.Usuarios.FindAsync(usuarioId);
-            if (usuarioActual == null)
-            {
-                return new List<Usuario>();
-            }
+            var matchesDetallados = await EncontrarMatchesDetalladosAsync(usuarioId, juegoId);
+            return matchesDetallados.Select(m => m.Usuario);
+        }
 
-            // Obtener información del juego
-            var juego = await _context.Juegos.FindAsync(juegoId);
-            if (juego == null)
-            {
-                return new List<Usuario>();
-            }
 
-            // Obtener usuarios que tienen el juego y no tienen un match confirmado con el usuario actual
-            var usuariosConJuego = await _context.UsuarioJuegos
-                .Where(uj => uj.JuegoId == juegoId && uj.UsuarioId != usuarioId)
-                .Select(uj => uj.UsuarioId)
-                .ToListAsync();
+        public async Task<double> CalcularPorcentajeMatchAsync(int usuarioId1, int usuarioId2, int juegoId)
+        {
+            var pref1 = await _context.PreferenciasMatching
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(p => p.UsuarioId == usuarioId1 && p.JuegoId == juegoId);
 
-            var usuariosYaMatcheados = await _context.Matches
-                .Where(m => (m.Usuario1Id == usuarioId || m.Usuario2Id == usuarioId) && m.MatchConfirmado)
-                .Select(m => m.Usuario1Id == usuarioId ? m.Usuario2Id : m.Usuario1Id)
-                .ToListAsync();
+            var pref2 = await _context.PreferenciasMatching
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(p => p.UsuarioId == usuarioId2 && p.JuegoId == juegoId);
 
-            var usuariosCandidatos = await _context.Usuarios
-                .Where(u => usuariosConJuego.Contains(u.Id) && !usuariosYaMatcheados.Contains(u.Id))
-                .ToListAsync();
+            if (pref1 == null || pref2 == null)
+                return 0;
 
-            // Filtrar por preferencias de matching
-            var matches = usuariosCandidatos.Where(u =>
-            {
-                // Filtrar por país (mismo país)
-                if (u.Pais != usuarioActual.Pais)
-                    return false;
-
-                // Filtrar por estilo de juego (mismo estilo)
-                if (u.EstiloJuego != usuarioActual.EstiloJuego)
-                    return false;
-
-                // Filtrar por edad (diferencia de 5 años como máximo)
-                if (Math.Abs(u.Edad - usuarioActual.Edad) > 5)
-                    return false;
-
-                return true;
-            }).ToList();
-
-            return matches;
+            return await CalcularPorcentajeMatchAsync(pref1, pref2);
         }
 
         public async Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId)
         {
-            // Verificar si ya existe un match entre estos usuarios para este juego
+            // Verificar si ya existe un match entre estos usuarios
             var matchExistente = await _context.Matches
                 .FirstOrDefaultAsync(m =>
                     (m.Usuario1Id == usuario1Id && m.Usuario2Id == usuario2Id && m.JuegoId == juegoId) ||
@@ -85,51 +182,69 @@ namespace TeamFinder.Api.Services
 
             if (matchExistente != null)
             {
-                return matchExistente;
+                return null; // Ya existe un match
             }
 
-            var nuevoMatch = new Match
+            // Verificar que ambos usuarios existen
+            var usuario1Existe = await _context.Usuarios.AnyAsync(u => u.Id == usuario1Id);
+            var usuario2Existe = await _context.Usuarios.AnyAsync(u => u.Id == usuario2Id);
+            var juegoExiste = await _context.Juegos.AnyAsync(j => j.Id == juegoId);
+
+            if (!usuario1Existe || !usuario2Existe || !juegoExiste)
+            {
+                return null;
+            }
+
+            var match = new Match
             {
                 Usuario1Id = usuario1Id,
                 Usuario2Id = usuario2Id,
                 JuegoId = juegoId,
-                FechaMatch = DateTime.Now
+                FechaMatch = DateTime.UtcNow,  
+                AceptadoPorUsuario1 = false,  
+                AceptadoPorUsuario2 = false,   
+                MatchConfirmado = false
             };
 
-            _context.Matches.Add(nuevoMatch);
+            _context.Matches.Add(match);
             await _context.SaveChangesAsync();
-
-            return nuevoMatch;
+            return match;
         }
 
         public async Task<bool> AceptarMatchAsync(int matchId, int usuarioId)
         {
             var match = await _context.Matches.FindAsync(matchId);
-
             if (match == null)
-            {
                 return false;
-            }
 
             if (match.Usuario1Id == usuarioId)
             {
-                match.AceptadoPorUsuario1 = true;
+                match.AceptadoPorUsuario1 = true;  
             }
             else if (match.Usuario2Id == usuarioId)
             {
-                match.AceptadoPorUsuario2 = true;
+                match.AceptadoPorUsuario2 = true; 
             }
             else
             {
+                return false; 
+            }
+
+            // Actualizar MatchConfirmado si ambos han aceptado
+            match.MatchConfirmado = match.AceptadoPorUsuario1 && match.AceptadoPorUsuario2;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> RechazarMatchAsync(int matchId, int usuarioId)
+        {
+            var match = await _context.Matches.FindAsync(matchId);
+            if (match == null)
                 return false;
-            }
 
-            // Si ambos usuarios aceptaron, confirmar el match
-            if (match.AceptadoPorUsuario1 && match.AceptadoPorUsuario2)
-            {
-                match.MatchConfirmado = true;
-            }
-
+            // Si el usuario rechaza, eliminamos el match
+            _context.Matches.Remove(match);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -137,24 +252,30 @@ namespace TeamFinder.Api.Services
         public async Task<IEnumerable<Match>> ObtenerMatchesPendientesAsync(int usuarioId)
         {
             return await _context.Matches
-                .Where(m =>
-                    (m.Usuario1Id == usuarioId && !m.AceptadoPorUsuario1) ||
-                    (m.Usuario2Id == usuarioId && !m.AceptadoPorUsuario2))
-                .Include(m => m.Usuario1)
-                .Include(m => m.Usuario2)
-                .Include(m => m.Juego)
+                .Where(m => (m.Usuario1Id == usuarioId && !m.AceptadoPorUsuario1) ||  // Usar AceptadoPorUsuario1
+                           (m.Usuario2Id == usuarioId && !m.AceptadoPorUsuario2))     // Usar AceptadoPorUsuario2
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Match>> ObtenerMatchesConfirmadosAsync(int usuarioId)
         {
             return await _context.Matches
-                .Where(m =>
-                    (m.Usuario1Id == usuarioId || m.Usuario2Id == usuarioId) && m.MatchConfirmado)
+                .Where(m => (m.Usuario1Id == usuarioId && m.MatchConfirmado) ||  // Usar MatchConfirmado
+                           (m.Usuario2Id == usuarioId && m.MatchConfirmado))
+                .ToListAsync();
+        }
+
+        public async Task<Match> ObtenerMatchDetalleAsync(int matchId)
+        {
+            return await _context.Matches
                 .Include(m => m.Usuario1)
                 .Include(m => m.Usuario2)
                 .Include(m => m.Juego)
-                .ToListAsync();
+                .FirstOrDefaultAsync(m => m.Id == matchId);
         }
     }
+
+
 }
+
+    

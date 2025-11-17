@@ -19,6 +19,12 @@ namespace TeamFinder.Api.Services
         Task<IEnumerable<EventoGaming>> ObtenerEventosProximosAsync();
         Task<IEnumerable<EventoGaming>> ObtenerEventosOrganizadosPorUsuarioAsync(int usuarioId);
         Task<IEnumerable<EventoGaming>> ObtenerEventosParticipandoPorUsuarioAsync(int usuarioId);
+
+        // NUEVOS MÉTODOS PARA VALIDACIONES
+        Task<bool> ExisteEventoAsync(int eventoId);
+        Task<bool> ExisteUsuarioAsync(int usuarioId);
+        Task<bool> ExisteJuegoAsync(int juegoId);
+        Task<int> ObtenerCantidadParticipantesAsync(int eventoId);
     }
 
     public class GameEventsService : IGameEventsService
@@ -35,6 +41,8 @@ namespace TeamFinder.Api.Services
             return await _context.EventosGaming
                 .Include(e => e.Juego)
                 .Include(e => e.Organizador)
+                .Include(e => e.Participantes)
+                    .ThenInclude(p => p.Usuario)
                 .OrderBy(e => e.FechaInicio)
                 .ToListAsync();
         }
@@ -51,6 +59,31 @@ namespace TeamFinder.Api.Services
 
         public async Task<EventoGaming> CrearEventoAsync(EventoGaming evento)
         {
+            // Validar que el organizador existe
+            var organizadorExiste = await _context.Usuarios.AnyAsync(u => u.Id == evento.OrganizadorId);
+            if (!organizadorExiste)
+            {
+                throw new ArgumentException("El organizador no existe");
+            }
+
+            // Validar que el juego existe
+            var juegoExiste = await _context.Juegos.AnyAsync(j => j.Id == evento.JuegoId);
+            if (!juegoExiste)
+            {
+                throw new ArgumentException("El juego no existe");
+            }
+
+            // Validar fechas
+            if (evento.FechaInicio >= evento.FechaFin)
+            {
+                throw new ArgumentException("La fecha de inicio debe ser anterior a la fecha de fin");
+            }
+
+            if (evento.FechaInicio <= DateTime.UtcNow)
+            {
+                throw new ArgumentException("La fecha de inicio debe ser futura");
+            }
+
             _context.EventosGaming.Add(evento);
             await _context.SaveChangesAsync();
             return evento;
@@ -58,7 +91,24 @@ namespace TeamFinder.Api.Services
 
         public async Task<bool> ActualizarEventoAsync(EventoGaming evento)
         {
-            _context.Entry(evento).State = EntityState.Modified;
+            // Validar que el evento existe
+            var eventoExistente = await _context.EventosGaming.FindAsync(evento.Id);
+            if (eventoExistente == null)
+            {
+                return false;
+            }
+
+            // Validar fechas
+            if (evento.FechaInicio >= evento.FechaFin)
+            {
+                throw new ArgumentException("La fecha de inicio debe ser anterior a la fecha de fin");
+            }
+
+            // No permitir actualizar el organizador
+            evento.OrganizadorId = eventoExistente.OrganizadorId;
+            evento.FechaCreacion = eventoExistente.FechaCreacion;
+
+            _context.Entry(eventoExistente).CurrentValues.SetValues(evento);
 
             try
             {
@@ -67,7 +117,7 @@ namespace TeamFinder.Api.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EventoExists(evento.Id))
+                if (!await EventoExists(evento.Id))
                 {
                     return false;
                 }
@@ -80,10 +130,19 @@ namespace TeamFinder.Api.Services
 
         public async Task<bool> EliminarEventoAsync(int eventoId)
         {
-            var evento = await _context.EventosGaming.FindAsync(eventoId);
+            var evento = await _context.EventosGaming
+                .Include(e => e.Participantes)
+                .FirstOrDefaultAsync(e => e.Id == eventoId);
+
             if (evento == null)
             {
                 return false;
+            }
+
+            // Eliminar participantes primero
+            if (evento.Participantes.Any())
+            {
+                _context.EventoParticipantes.RemoveRange(evento.Participantes);
             }
 
             _context.EventosGaming.Remove(evento);
@@ -96,6 +155,13 @@ namespace TeamFinder.Api.Services
             // Verificar si el evento existe
             var evento = await _context.EventosGaming.FindAsync(eventoId);
             if (evento == null)
+            {
+                return false;
+            }
+
+            // Verificar si el usuario existe
+            var usuarioExiste = await _context.Usuarios.AnyAsync(u => u.Id == usuarioId);
+            if (!usuarioExiste)
             {
                 return false;
             }
@@ -121,11 +187,19 @@ namespace TeamFinder.Api.Services
                 }
             }
 
+            // Verificar que el evento no haya comenzado
+            if (evento.FechaInicio <= DateTime.UtcNow)
+            {
+                return false;
+            }
+
             // Agregar al evento
             var participacion = new EventoParticipante
             {
                 EventoId = eventoId,
-                UsuarioId = usuarioId
+                UsuarioId = usuarioId,
+                FechaRegistro = DateTime.UtcNow,
+                Confirmado = false
             };
 
             _context.EventoParticipantes.Add(participacion);
@@ -141,6 +215,13 @@ namespace TeamFinder.Api.Services
             if (participacion == null)
             {
                 return false;
+            }
+
+            // Verificar que el evento no haya comenzado
+            var evento = await _context.EventosGaming.FindAsync(eventoId);
+            if (evento?.FechaInicio <= DateTime.UtcNow)
+            {
+                return false; // No se puede abandonar un evento que ya comenzó
             }
 
             _context.EventoParticipantes.Remove(participacion);
@@ -168,6 +249,7 @@ namespace TeamFinder.Api.Services
             return await _context.EventoParticipantes
                 .Where(ep => ep.EventoId == eventoId)
                 .Include(ep => ep.Usuario)
+                .Include(ep => ep.Evento)
                 .ToListAsync();
         }
 
@@ -177,18 +259,23 @@ namespace TeamFinder.Api.Services
                 .Where(e => e.JuegoId == juegoId)
                 .Include(e => e.Juego)
                 .Include(e => e.Organizador)
+                .Include(e => e.Participantes)
+                    .ThenInclude(p => p.Usuario)
                 .OrderBy(e => e.FechaInicio)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<EventoGaming>> ObtenerEventosProximosAsync()
         {
-            var ahora = DateTime.Now;
+            var ahora = DateTime.UtcNow;
             return await _context.EventosGaming
                 .Where(e => e.FechaInicio > ahora)
                 .Include(e => e.Juego)
                 .Include(e => e.Organizador)
+                .Include(e => e.Participantes)
+                    .ThenInclude(p => p.Usuario)
                 .OrderBy(e => e.FechaInicio)
+                .Take(10) // Limitar a 10 eventos próximos
                 .ToListAsync();
         }
 
@@ -197,7 +284,10 @@ namespace TeamFinder.Api.Services
             return await _context.EventosGaming
                 .Where(e => e.OrganizadorId == usuarioId)
                 .Include(e => e.Juego)
-                .OrderBy(e => e.FechaInicio)
+                .Include(e => e.Organizador)
+                .Include(e => e.Participantes)
+                    .ThenInclude(p => p.Usuario)
+                .OrderByDescending(e => e.FechaCreacion)
                 .ToListAsync();
         }
 
@@ -205,16 +295,42 @@ namespace TeamFinder.Api.Services
         {
             return await _context.EventoParticipantes
                 .Where(ep => ep.UsuarioId == usuarioId)
+                .Include(ep => ep.Evento)
+                    .ThenInclude(e => e.Juego)
+                .Include(ep => ep.Evento)
+                    .ThenInclude(e => e.Organizador)
+                .Include(ep => ep.Evento)
+                    .ThenInclude(e => e.Participantes)
                 .Select(ep => ep.Evento)
-                .Include(e => e.Juego)
-                .Include(e => e.Organizador)
                 .OrderBy(e => e.FechaInicio)
                 .ToListAsync();
         }
 
-        private bool EventoExists(int id)
+        // NUEVOS MÉTODOS AUXILIARES
+        public async Task<bool> ExisteEventoAsync(int eventoId)
         {
-            return _context.EventosGaming.Any(e => e.Id == id);
+            return await _context.EventosGaming.AnyAsync(e => e.Id == eventoId);
+        }
+
+        public async Task<bool> ExisteUsuarioAsync(int usuarioId)
+        {
+            return await _context.Usuarios.AnyAsync(u => u.Id == usuarioId);
+        }
+
+        public async Task<bool> ExisteJuegoAsync(int juegoId)
+        {
+            return await _context.Juegos.AnyAsync(j => j.Id == juegoId);
+        }
+
+        public async Task<int> ObtenerCantidadParticipantesAsync(int eventoId)
+        {
+            return await _context.EventoParticipantes
+                .CountAsync(ep => ep.EventoId == eventoId);
+        }
+
+        private async Task<bool> EventoExists(int id)
+        {
+            return await _context.EventosGaming.AnyAsync(e => e.Id == id);
         }
     }
 }

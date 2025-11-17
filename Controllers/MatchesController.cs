@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TeamFinder.Api.Services;
 using TeamFinder.Api.Models;
+using TeamFinder.Shared.Dtos;
+using TeamFinder.Dtos;
 
 namespace TeamFinder.Api.Controllers
 {
@@ -15,21 +17,68 @@ namespace TeamFinder.Api.Controllers
             _matchingService = matchingService;
         }
 
-        [HttpGet("encontrar/{usuarioId}/{juegoId}")]
-        public async Task<ActionResult<IEnumerable<Usuario>>> EncontrarMatches(int usuarioId, int juegoId)
+        // GET: api/Matches/BuscarMatches/1/1
+        [HttpGet("BuscarMatches/{usuarioId}/{juegoId}")]
+        public async Task<ActionResult<IEnumerable<MatchResultDto>>> BuscarMatches(int usuarioId, int juegoId)
         {
-            var matches = await _matchingService.EncontrarMatchesAsync(usuarioId, juegoId);
-            return Ok(matches);
+            var matches = await _matchingService.EncontrarMatchesDetalladosAsync(usuarioId, juegoId);
+            
+            var matchesDto = matches.Select(m => new MatchResultDto
+            {
+                Usuario = new UsuarioDto
+                {
+                    Id = m.Usuario.Id,
+                    Username = m.Usuario.Username,
+                    Pais = m.Usuario.Pais,
+                    Edad = m.Usuario.Edad,
+                    EstiloJuego = m.Usuario.EstiloJuego
+                },
+                PorcentajeMatch = m.PorcentajeMatch,
+                RazonesMatch = m.RazonesMatch,
+                NivelHabilidad = m.PreferenciaMatching.NivelHabilidad,
+                EstiloJuego = m.PreferenciaMatching.EstiloJuego,
+                RolPreferido = m.PreferenciaMatching.RolPreferido
+            });
+
+            return Ok(matchesDto);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Match>> CrearMatch(int usuario1Id, int usuario2Id, int juegoId)
+        // POST: api/Matches/CalcularMatch
+        [HttpPost("CalcularMatch")]
+        public async Task<ActionResult<double>> CalcularMatch([FromBody] MatchRequest request)
         {
-            var match = await _matchingService.CrearMatchAsync(usuario1Id, usuario2Id, juegoId);
-            return Ok(match);
+            var porcentaje = await _matchingService.CalcularPorcentajeMatchAsync(request.UsuarioId1, request.UsuarioId2, request.JuegoId);
+            return Ok(porcentaje);
         }
 
-        [HttpPut("{matchId}/aceptar/{usuarioId}")]
+        // POST: api/Matches/CrearMatch
+        [HttpPost("CrearMatch")]
+        public async Task<ActionResult<MatchDto>> CrearMatch([FromBody] MatchCreacionDto matchCreacionDto)
+        {
+            var match = await _matchingService.CrearMatchAsync(matchCreacionDto.Usuario1Id, matchCreacionDto.Usuario2Id, matchCreacionDto.JuegoId);
+
+            if (match == null)
+            {
+                return BadRequest("No se pudo crear el match. Verifica que los usuarios existan y no tengan ya un match activo.");
+            }
+
+            var matchDto = new MatchDto
+            {
+                Id = match.Id,
+                Usuario1Id = match.Usuario1Id,
+                Usuario2Id = match.Usuario2Id,
+                JuegoId = match.JuegoId,
+                FechaMatch = match.FechaMatch,  
+                AceptadoPorUsuario1 = match.AceptadoPorUsuario1, 
+                AceptadoPorUsuario2 = match.AceptadoPorUsuario2, 
+                MatchConfirmado = match.MatchConfirmado
+            };
+
+            return Ok(matchDto);
+        }
+
+        // PUT: api/Matches/AceptarMatch/1/1
+        [HttpPut("AceptarMatch/{matchId}/{usuarioId}")]
         public async Task<IActionResult> AceptarMatch(int matchId, int usuarioId)
         {
             var resultado = await _matchingService.AceptarMatchAsync(matchId, usuarioId);
@@ -39,21 +88,108 @@ namespace TeamFinder.Api.Controllers
                 return BadRequest("No se pudo aceptar el match. Verifica los datos e intenta de nuevo.");
             }
 
-            return NoContent();
+            return Ok(new { message = "Match aceptado exitosamente" });
         }
 
-        [HttpGet("pendientes/{usuarioId}")]
-        public async Task<ActionResult<IEnumerable<Match>>> ObtenerMatchesPendientes(int usuarioId)
+        // GET: api/Matches/Pendientes/1
+        [HttpGet("Pendientes/{usuarioId}")]
+        public async Task<ActionResult<IEnumerable<MatchDto>>> ObtenerMatchesPendientes(int usuarioId)
         {
             var matches = await _matchingService.ObtenerMatchesPendientesAsync(usuarioId);
-            return Ok(matches);
-        }
 
-        [HttpGet("confirmados/{usuarioId}")]
-        public async Task<ActionResult<IEnumerable<Match>>> ObtenerMatchesConfirmados(int usuarioId)
+            var matchesDto = matches.Select(m => new MatchDto
+            {
+                Id = m.Id,
+                Usuario1Id = m.Usuario1Id,
+                Usuario2Id = m.Usuario2Id,
+                JuegoId = m.JuegoId,
+                FechaMatch = m.FechaMatch,  
+                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,  
+                AceptadoPorUsuario2 = m.AceptadoPorUsuario2,  
+                MatchConfirmado = m.MatchConfirmado
+            });
+
+            return Ok(matchesDto);
+        }
+        // GET: api/Matches/Confirmados/1
+        [HttpGet("Confirmados/{usuarioId}")]
+        public async Task<ActionResult<IEnumerable<MatchDto>>> ObtenerMatchesConfirmados(int usuarioId)
         {
             var matches = await _matchingService.ObtenerMatchesConfirmadosAsync(usuarioId);
-            return Ok(matches);
+
+            var matchesDto = matches.Select(m => new MatchDto
+            {
+                Id = m.Id,
+                Usuario1Id = m.Usuario1Id,
+                Usuario2Id = m.Usuario2Id,
+                JuegoId = m.JuegoId,
+                FechaMatch = m.FechaMatch,  
+                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,  
+                AceptadoPorUsuario2 = m.AceptadoPorUsuario2,  
+                MatchConfirmado = m.MatchConfirmado
+            });
+
+            return Ok(matchesDto);
+        }
+
+        // DELETE: api/Matches/RechazarMatch/1/1
+        [HttpDelete("RechazarMatch/{matchId}/{usuarioId}")]
+        public async Task<IActionResult> RechazarMatch(int matchId, int usuarioId)
+        {
+            var resultado = await _matchingService.RechazarMatchAsync(matchId, usuarioId);
+
+            if (!resultado)
+            {
+                return BadRequest("No se pudo rechazar el match. Verifica los datos e intenta de nuevo.");
+            }
+
+            return Ok(new { message = "Match rechazado exitosamente" });
+        }
+
+        // GET: api/Matches/Detalle/1
+        [HttpGet("Detalle/{matchId}")]
+        public async Task<ActionResult<MatchDetalleDto>> ObtenerMatchDetalle(int matchId)
+        {
+            var match = await _matchingService.ObtenerMatchDetalleAsync(matchId);
+
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            var matchDetalleDto = new MatchDetalleDto
+            {
+                Id = match.Id,
+                Usuario1 = new UsuarioDto
+                {
+                    Id = match.Usuario1.Id,
+                    Username = match.Usuario1.Username,
+                    Pais = match.Usuario1.Pais,
+                    Edad = match.Usuario1.Edad,
+                    EstiloJuego = match.Usuario1.EstiloJuego
+                },
+                Usuario2 = new UsuarioDto
+                {
+                    Id = match.Usuario2.Id,
+                    Username = match.Usuario2.Username,
+                    Pais = match.Usuario2.Pais,
+                    Edad = match.Usuario2.Edad,
+                    EstiloJuego = match.Usuario2.EstiloJuego
+                },
+                Juego = new JuegoDto
+                {
+                    Id = match.Juego.Id,
+                    Nombre = match.Juego.Nombre,
+                    Categoria = match.Juego.Categoria,
+                    ImagenUrl = match.Juego.ImagenUrl
+                },
+                FechaMatch = match.FechaMatch,  
+                AceptadoPorUsuario1 = match.AceptadoPorUsuario1,  
+                AceptadoPorUsuario2 = match.AceptadoPorUsuario2,  
+                MatchConfirmado = match.MatchConfirmado
+            };
+
+            return Ok(matchDetalleDto);
         }
     }
 }

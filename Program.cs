@@ -34,6 +34,7 @@ builder.Services.AddDbContext<TeamFinderDbContext>(options =>
 builder.Services.AddSignalR();
 
 // Registra tus servicios personalizados
+
 builder.Services.AddScoped<IMatchingService, MatchingService>();
 builder.Services.AddScoped<IReputationService, ReputationService>();
 builder.Services.AddScoped<IGameEventsService, GameEventsService>();

@@ -13,21 +13,36 @@ namespace TeamFinder.Api.Models
         [Required]
         public int JuegoId { get; set; }
 
-        public string NivelHabilidad { get; set; } // Principiante, Intermedio, Avanzado
+        // Nivel y estilo
+        public string NivelHabilidad { get; set; } // "Principiante", "Intermedio", "Avanzado", "Experto"
+        public string EstiloJuego { get; set; } // "Casual", "Competitivo", "Tryhard", "Relajado"
 
-        public string Disponibilidad { get; set; } // Mañana, Tarde, Noche, Fin de semana
+        // Disponibilidad - MEJORADO
+        public string DiasDisponibles { get; set; } // "Lunes,Martes,Viernes" o "FinesDeSemana"
+        public string HorarioDisponible { get; set; } // "Mañana", "Tarde", "Noche", "Madrugada"
+        public int HorasPorSesion { get; set; } // 1, 2, 3+ horas
 
-        public string Idioma { get; set; }
+        // Geografía e idioma
+        public string PaisPreferido { get; set; } // País específico o "Cualquiera"
+        public bool MismoPais { get; set; } // Solo matching con mismo país
+        public string Idioma { get; set; } // "Español", "Inglés", "Portugués", etc.
 
-        public int EdadMinima { get; set; } = 0;
+        // Preferencias de equipo
+        public string RolPreferido { get; set; } // "DPS", "Support", "Tank", "Flex", etc.
+        public bool MicrofonoRequerido { get; set; }
+        public bool ComunicacionVoz { get; set; }
 
-        public int EdadMaxima { get; set; } = 99;
+        // Rango de edad
+        public int EdadMinimaPreferida { get; set; } = 18;
+        public int EdadMaximaPreferida { get; set; } = 60;
 
-        public bool SoloMicrófono { get; set; } = false;
+        // Experiencia específica en el juego
+        public int HorasEnJuego { get; set; } // Horas totales jugadas
+        public string RangoCompetitivo { get; set; } // "Bronce", "Plata", "Oro", etc.
 
         public string NotasAdicionales { get; set; }
-
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
+        public DateTime FechaActualizacion { get; set; } = DateTime.Now;
 
         // Propiedades de navegación
         public virtual Usuario Usuario { get; set; }

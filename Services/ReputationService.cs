@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
 using TeamFinder.Api.Models;
+using TeamFinder.Dtos;
 
 namespace TeamFinder.Api.Services
 {
@@ -12,6 +13,16 @@ namespace TeamFinder.Api.Services
         Task<IEnumerable<Insignia>> ObtenerInsigniasDisponiblesAsync();
         Task<IEnumerable<UsuarioInsignia>> ObtenerInsigniasUsuarioAsync(int usuarioId);
         Task VerificarYAsignarInsigniasAsync(int usuarioId);
+
+
+        Task<int> ObtenerTotalEvaluacionesAsync(int usuarioId);
+        Task<IEnumerable<Reputacion>> ObtenerEvaluacionesRealizadasAsync(int usuarioId);
+        Task<Reputacion> ObtenerEvaluacionDetalleAsync(int evaluacionId);
+        Task<bool> ExisteUsuarioAsync(int usuarioId);
+        Task<bool> ExisteEvaluacionAsync(int usuarioId, int evaluadorId);
+        Task<bool> ActualizarEvaluacionAsync(int evaluacionId, int puntuacion, string comentario);
+        Task<bool> EliminarEvaluacionAsync(int evaluacionId);
+        Task<ReputacionEstadisticasDto> ObtenerEstadisticasAsync(int usuarioId);
     }
 
     public class ReputationService : IReputationService
@@ -23,6 +34,7 @@ namespace TeamFinder.Api.Services
             _context = context;
         }
 
+        // Métodos existentes (ya implementados)
         public async Task<double> CalcularPuntuacionPromedioAsync(int usuarioId)
         {
             var evaluaciones = await _context.Reputaciones
@@ -144,6 +156,128 @@ namespace TeamFinder.Api.Services
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        // NUEVOS MÉTODOS IMPLEMENTADOS
+
+        public async Task<int> ObtenerTotalEvaluacionesAsync(int usuarioId)
+        {
+            return await _context.Reputaciones
+                .CountAsync(r => r.UsuarioId == usuarioId);
+        }
+
+        public async Task<IEnumerable<Reputacion>> ObtenerEvaluacionesRealizadasAsync(int usuarioId)
+        {
+            return await _context.Reputaciones
+                .Where(r => r.EvaluadorId == usuarioId)
+                .Include(r => r.Usuario)
+                .OrderByDescending(r => r.FechaEvaluacion)
+                .ToListAsync();
+        }
+
+        public async Task<Reputacion> ObtenerEvaluacionDetalleAsync(int evaluacionId)
+        {
+            return await _context.Reputaciones
+                .Include(r => r.Usuario)
+                .Include(r => r.Evaluador)
+                .FirstOrDefaultAsync(r => r.Id == evaluacionId);
+        }
+
+        public async Task<bool> ExisteUsuarioAsync(int usuarioId)
+        {
+            return await _context.Usuarios.AnyAsync(u => u.Id == usuarioId);
+        }
+
+        public async Task<bool> ExisteEvaluacionAsync(int usuarioId, int evaluadorId)
+        {
+            return await _context.Reputaciones
+                .AnyAsync(r => r.UsuarioId == usuarioId && r.EvaluadorId == evaluadorId);
+        }
+
+        public async Task<bool> ActualizarEvaluacionAsync(int evaluacionId, int puntuacion, string comentario)
+        {
+            var evaluacion = await _context.Reputaciones.FindAsync(evaluacionId);
+            if (evaluacion == null)
+            {
+                return false;
+            }
+
+            evaluacion.Puntuacion = puntuacion;
+            evaluacion.Comentario = comentario;
+            evaluacion.FechaEvaluacion = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+
+            // Verificar si el usuario obtiene nuevas insignias después de la actualización
+            await VerificarYAsignarInsigniasAsync(evaluacion.UsuarioId);
+
+            return true;
+        }
+
+        public async Task<bool> EliminarEvaluacionAsync(int evaluacionId)
+        {
+            var evaluacion = await _context.Reputaciones.FindAsync(evaluacionId);
+            if (evaluacion == null)
+            {
+                return false;
+            }
+
+            _context.Reputaciones.Remove(evaluacion);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<ReputacionEstadisticasDto> ObtenerEstadisticasAsync(int usuarioId)
+        {
+            var evaluaciones = await _context.Reputaciones
+                .Where(r => r.UsuarioId == usuarioId)
+                .ToListAsync();
+
+            var totalEvaluaciones = evaluaciones.Count;
+            var puntuacionPromedio = totalEvaluaciones > 0 ? evaluaciones.Average(e => e.Puntuacion) : 0;
+
+            // Calcular distribución de puntuaciones
+            var distribucion = new Dictionary<int, int>
+            {
+                { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 }, { 5, 0 }
+            };
+
+            foreach (var evaluacion in evaluaciones)
+            {
+                if (distribucion.ContainsKey(evaluacion.Puntuacion))
+                {
+                    distribucion[evaluacion.Puntuacion]++;
+                }
+            }
+
+            // Calcular evaluaciones este mes
+            var inicioMes = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
+            var evaluacionesEsteMes = await _context.Reputaciones
+                .CountAsync(r => r.UsuarioId == usuarioId && r.FechaEvaluacion >= inicioMes);
+
+            // Calcular tendencia (simplificado: comparar con el mes anterior)
+            var inicioMesAnterior = inicioMes.AddMonths(-1);
+            var finMesAnterior = inicioMes.AddDays(-1);
+            var evaluacionesMesAnterior = await _context.Reputaciones
+                .CountAsync(r => r.UsuarioId == usuarioId &&
+                                r.FechaEvaluacion >= inicioMesAnterior &&
+                                r.FechaEvaluacion < inicioMes);
+
+            double tendencia = 0;
+            if (evaluacionesMesAnterior > 0)
+            {
+                tendencia = (evaluacionesEsteMes - evaluacionesMesAnterior) / (double)evaluacionesMesAnterior;
+            }
+
+            return new ReputacionEstadisticasDto
+            {
+                UsuarioId = usuarioId,
+                PuntuacionPromedio = Math.Round(puntuacionPromedio, 2),
+                TotalEvaluaciones = totalEvaluaciones,
+                DistribucionPuntuaciones = distribucion,
+                EvaluacionesEsteMes = evaluacionesEsteMes,
+                Tendencia = tendencia
+            };
         }
     }
 }

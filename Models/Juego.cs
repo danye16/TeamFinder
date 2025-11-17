@@ -16,6 +16,8 @@ namespace TeamFinder.Api.Models
 
         public string ImagenUrl { get; set; }
 
+        public int? SteamAppId { get; set; }
+
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
         // Propiedades de navegación

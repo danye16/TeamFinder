@@ -16,22 +16,53 @@ namespace TeamFinder.Api.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsuarioJuego>>> GetUsuarioJuegos()
+        [HttpGet("MostrarUsuariosJuegos")]
+        public async Task<ActionResult<IEnumerable<UsuarioJuegoDto>>> GetUsuarioJuegos()
         {
-            return await _context.UsuarioJuegos
+            var usuarioJuegos = await _context.UsuarioJuegos
                 .Include(uj => uj.Usuario)
                 .Include(uj => uj.Juego)
+                .Select(uj => new UsuarioJuegoDto
+                {
+                    Id = uj.Id,
+                    UsuarioId = uj.UsuarioId,
+                    JuegoId = uj.JuegoId,
+                    FechaAgregado = uj.FechaAgregado,
+                    UsuarioUsername = uj.Usuario.Username,
+                    UsuarioPais = uj.Usuario.Pais,
+                    UsuarioEdad = uj.Usuario.Edad,
+                    UsuarioEstiloJuego = uj.Usuario.EstiloJuego,
+                    JuegoNombre = uj.Juego.Nombre,
+                    JuegoCategoria = uj.Juego.Categoria,
+                    JuegoImagenUrl = uj.Juego.ImagenUrl
+                })
                 .ToListAsync();
+
+            return Ok(usuarioJuegos);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioJuego>> GetUsuarioJuego(int id)
+        [HttpGet("BuscarUsuarioJuegoEspecifico/{id}")]
+        public async Task<ActionResult<UsuarioJuegoDto>> GetUsuarioJuego(int id)
         {
             var usuarioJuego = await _context.UsuarioJuegos
                 .Include(uj => uj.Usuario)
                 .Include(uj => uj.Juego)
-                .FirstOrDefaultAsync(uj => uj.Id == id);
+                .Where(uj => uj.Id == id)
+                .Select(uj => new UsuarioJuegoDto
+                {
+                    Id = uj.Id,
+                    UsuarioId = uj.UsuarioId,
+                    JuegoId = uj.JuegoId,
+                    FechaAgregado = uj.FechaAgregado,
+                    UsuarioUsername = uj.Usuario.Username,
+                    UsuarioPais = uj.Usuario.Pais,
+                    UsuarioEdad = uj.Usuario.Edad,
+                    UsuarioEstiloJuego = uj.Usuario.EstiloJuego,
+                    JuegoNombre = uj.Juego.Nombre,
+                    JuegoCategoria = uj.Juego.Categoria,
+                    JuegoImagenUrl = uj.Juego.ImagenUrl
+                })
+                .FirstOrDefaultAsync();
 
             if (usuarioJuego == null)
             {
@@ -41,25 +72,152 @@ namespace TeamFinder.Api.Controllers
             return usuarioJuego;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<UsuarioJuego>> PostUsuarioJuego(UsuarioJuego usuarioJuego)
+        [HttpPost("CrearUsuarioJuego")]
+        public async Task<ActionResult<UsuarioJuegoDto>> PostUsuarioJuego(UsuarioJuegoCreacionDto usuarioJuegoCreacionDto)
         {
             // Verificar si ya existe la relación
             var existeRelacion = await _context.UsuarioJuegos
-                .AnyAsync(uj => uj.UsuarioId == usuarioJuego.UsuarioId && uj.JuegoId == usuarioJuego.JuegoId);
+                .AnyAsync(uj => uj.UsuarioId == usuarioJuegoCreacionDto.UsuarioId && uj.JuegoId == usuarioJuegoCreacionDto.JuegoId);
 
             if (existeRelacion)
             {
                 return BadRequest("El usuario ya tiene este juego en su biblioteca.");
             }
 
+            // Verificar que el usuario existe
+            var usuarioExiste = await _context.Usuarios.AnyAsync(u => u.Id == usuarioJuegoCreacionDto.UsuarioId);
+            if (!usuarioExiste)
+            {
+                return BadRequest("El usuario no existe.");
+            }
+
+            // Verificar que el juego existe
+            var juegoExiste = await _context.Juegos.AnyAsync(j => j.Id == usuarioJuegoCreacionDto.JuegoId);
+            if (!juegoExiste)
+            {
+                return BadRequest("El juego no existe.");
+            }
+
+            // Crear la nueva relación
+            var usuarioJuego = new UsuarioJuego
+            {
+                UsuarioId = usuarioJuegoCreacionDto.UsuarioId,
+                JuegoId = usuarioJuegoCreacionDto.JuegoId,
+                FechaAgregado = DateTime.UtcNow
+            };
+
             _context.UsuarioJuegos.Add(usuarioJuego);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsuarioJuego), new { id = usuarioJuego.Id }, usuarioJuego);
+            // Cargar los datos relacionados para retornar el DTO completo
+            var usuarioJuegoConDatos = await _context.UsuarioJuegos
+                .Include(uj => uj.Usuario)
+                .Include(uj => uj.Juego)
+                .Where(uj => uj.Id == usuarioJuego.Id)
+                .Select(uj => new UsuarioJuegoDto
+                {
+                    Id = uj.Id,
+                    UsuarioId = uj.UsuarioId,
+                    JuegoId = uj.JuegoId,
+                    FechaAgregado = uj.FechaAgregado,
+                    UsuarioUsername = uj.Usuario.Username,
+                    UsuarioPais = uj.Usuario.Pais,
+                    UsuarioEdad = uj.Usuario.Edad,
+                    UsuarioEstiloJuego = uj.Usuario.EstiloJuego,
+                    JuegoNombre = uj.Juego.Nombre,
+                    JuegoCategoria = uj.Juego.Categoria,
+                    JuegoImagenUrl = uj.Juego.ImagenUrl
+                })
+                .FirstOrDefaultAsync();
+
+            return CreatedAtAction(nameof(GetUsuarioJuego), new { id = usuarioJuegoConDatos.Id }, usuarioJuegoConDatos);
         }
 
-        [HttpDelete("{id}")]
+        [HttpPost("AgregarJuegoDesdeSteam")]
+        public async Task<ActionResult<UsuarioJuegoDto>> AgregarJuegoDesdeSteam(UsuarioJuegoSteamCreacionDto dto)
+        {
+            // Verificar que el usuario existe
+            var usuarioExiste = await _context.Usuarios.AnyAsync(u => u.Id == dto.UsuarioId);
+            if (!usuarioExiste)
+            {
+                return BadRequest("El usuario no existe.");
+            }
+
+            // Buscar o crear el juego
+            var juego = await ObtenerOCrearJuego(dto.SteamAppId, dto.Nombre, dto.Categoria, dto.ImagenUrl);
+
+            // Verificar si ya existe la relación Usuario-Juego
+            var existeRelacion = await _context.UsuarioJuegos
+                .AnyAsync(uj => uj.UsuarioId == dto.UsuarioId && uj.JuegoId == juego.Id);
+
+            if (existeRelacion)
+            {
+                return BadRequest("El usuario ya tiene este juego en su biblioteca.");
+            }
+
+            // Crear la relación UsuarioJuego
+            var usuarioJuego = new UsuarioJuego
+            {
+                UsuarioId = dto.UsuarioId,
+                JuegoId = juego.Id,
+                FechaAgregado = DateTime.UtcNow
+            };
+
+            _context.UsuarioJuegos.Add(usuarioJuego);
+            await _context.SaveChangesAsync();
+
+            // Retornar el resultado con los datos completos
+            var resultado = await _context.UsuarioJuegos
+                .Include(uj => uj.Usuario)
+                .Include(uj => uj.Juego)
+                .Where(uj => uj.Id == usuarioJuego.Id)
+                .Select(uj => new UsuarioJuegoDto
+                {
+                    Id = uj.Id,
+                    UsuarioId = uj.UsuarioId,
+                    JuegoId = uj.JuegoId,
+                    FechaAgregado = uj.FechaAgregado,
+                    UsuarioUsername = uj.Usuario.Username,
+                    UsuarioPais = uj.Usuario.Pais,
+                    UsuarioEdad = uj.Usuario.Edad,
+                    UsuarioEstiloJuego = uj.Usuario.EstiloJuego,
+                    JuegoNombre = uj.Juego.Nombre,
+                    JuegoCategoria = uj.Juego.Categoria,
+                    JuegoImagenUrl = uj.Juego.ImagenUrl
+                })
+                .FirstOrDefaultAsync();
+
+            return CreatedAtAction(nameof(GetUsuarioJuego), new { id = resultado.Id }, resultado);
+        }
+
+        private async Task<Juego> ObtenerOCrearJuego(int steamAppId, string nombre, string categoria, string imagenUrl)
+        {
+            // Buscar por SteamAppId (lo más confiable)
+            var juegoExistente = await _context.Juegos
+                .FirstOrDefaultAsync(j => j.SteamAppId == steamAppId);
+
+            if (juegoExistente != null)
+            {
+                return juegoExistente;
+            }
+
+            // Si no existe, crear nuevo juego
+            var nuevoJuego = new Juego
+            {
+                Nombre = nombre,
+                Categoria = categoria,
+                ImagenUrl = imagenUrl,
+                SteamAppId = steamAppId,
+                FechaCreacion = DateTime.UtcNow
+            };
+
+            _context.Juegos.Add(nuevoJuego);
+            await _context.SaveChangesAsync();
+
+            return nuevoJuego;
+        }
+
+        [HttpDelete("EliminarUsuarioJuego/{id}")]
         public async Task<IActionResult> DeleteUsuarioJuego(int id)
         {
             var usuarioJuego = await _context.UsuarioJuegos.FindAsync(id);
@@ -74,7 +232,7 @@ namespace TeamFinder.Api.Controllers
             return NoContent();
         }
 
-        [HttpGet("usuario/{usuarioId}")]
+        [HttpGet("BuscarConUsuario/{usuarioId}")]
         public async Task<ActionResult<IEnumerable<Juego>>> GetJuegosPorUsuario(int usuarioId)
         {
             var juegos = await _context.UsuarioJuegos
@@ -85,7 +243,7 @@ namespace TeamFinder.Api.Controllers
             return juegos;
         }
 
-        [HttpGet("juego/{juegoId}")]
+        [HttpGet("BuscarConJuego/{juegoId}")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosPorJuego(int juegoId)
         {
             var usuarios = await _context.UsuarioJuegos
