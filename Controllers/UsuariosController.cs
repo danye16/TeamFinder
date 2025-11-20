@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TeamFinder.Api.Data;
 using TeamFinder.Api.Models;
+using TeamFinder.Dtos;
 using TeamFinder.Shared.Dtos;
 
 namespace TeamFinder.Api.Controllers
@@ -12,10 +13,101 @@ namespace TeamFinder.Api.Controllers
     {
         private readonly TeamFinderDbContext _context;
 
+
+        public class SteamLoginDto
+        {
+            public string SteamId { get; set; }
+        }
         public UsuariosController(TeamFinderDbContext context)
         {
             _context = context;
         }
+
+        [HttpPost("LoginSteam")]
+        public async Task<ActionResult<Usuario>> LoginSteam([FromBody] SteamLoginDto loginDto)
+        {
+            if (string.IsNullOrEmpty(loginDto.SteamId))
+            {
+                return BadRequest("El SteamId es obligatorio.");
+            }
+
+            // Buscamos un usuario que tenga ese SteamId
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.SteamId == loginDto.SteamId);
+
+            // Si no existe, devolvemos 404 para que el Frontend sepa que debe ir a Registrarse
+            if (usuario == null)
+            {
+                return NotFound(new { message = "Usuario no encontrado. Por favor regístrate primero." });
+            }
+
+            // Si existe, lo devolvemos (el Frontend lo usará para guardar el token/sesión)
+            return Ok(usuario);
+        }
+
+        // Endpoint GET para Login con Steam (NUEVO)
+        [HttpGet("LoginSteam")]
+        public async Task<ActionResult<Usuario>> GetLoginSteam([FromQuery] string steamId)
+        {
+            if (string.IsNullOrEmpty(steamId))
+            {
+                return BadRequest("El SteamId es obligatorio.");
+            }
+
+            // Buscamos un usuario que tenga ese SteamId
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.SteamId == steamId);
+
+            // Si no existe, devolvemos 404 para que el Frontend sepa que debe ir a Registrarse
+            if (usuario == null)
+            {
+                return NotFound(new { message = "Usuario no encontrado. Por favor regístrate primero." });
+            }
+
+            // Si existe, lo devolvemos (el Frontend lo usará para guardar el token/sesión)
+            return Ok(usuario);
+        }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<Usuario>> Login([FromBody] LoginDto loginDto)
+        {
+            // 1. Buscamos al usuario por nombre
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+
+            if (usuario == null)
+            {
+                return Unauthorized("Usuario no encontrado.");
+            }
+
+            // 2. Generamos el hash de la contraseña que nos enviaron 
+            // (Usando TU misma lógica de registro)
+            var hashIntento = PasswordHasher.HashPassword(loginDto.Password);
+
+            // 3. Comparamos los hashes
+            if (usuario.Contraseña != hashIntento)
+            {
+                return Unauthorized("Contraseña incorrecta.");
+            }
+
+            // 4. Si todo coincide, devolvemos el usuario
+            return Ok(new
+            {
+                usuario.Id,
+                usuario.Username,
+                usuario.SteamId,
+                usuario.Pais,
+                usuario.Edad,
+                usuario.EstiloJuego,
+                usuario.FechaCreacion
+                // NO devolvemos la contraseña
+            });
+        }
+
+
+
+
+
 
         [HttpGet("MostrarUsuarios")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
