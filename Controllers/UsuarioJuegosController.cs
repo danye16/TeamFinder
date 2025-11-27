@@ -72,6 +72,44 @@ namespace TeamFinder.Api.Controllers
             return usuarioJuego;
         }
 
+        [HttpGet("BuscarJugadoresPorSteamId/{steamAppId}")]
+        public async Task<ActionResult<IEnumerable<UsuarioJuegoDto>>> GetUsuariosPorSteamAppId(int steamAppId)
+        {
+            // 1. Buscamos cuál es el ID interno (ej: 5) usando el ID de Steam (ej: 730)
+            var juegoInterno = await _context.Juegos
+                .FirstOrDefaultAsync(j => j.SteamAppId == steamAppId);
+
+            if (juegoInterno == null)
+            {
+                // Si nadie ha registrado el juego, devolvemos lista vacía en vez de error
+                return Ok(new List<UsuarioJuegoDto>());
+            }
+
+            // 2. Buscamos los usuarios usando el ID interno que acabamos de encontrar
+            var usuariosJuegos = await _context.UsuarioJuegos
+                .Include(uj => uj.Usuario)
+                .Include(uj => uj.Juego) // Incluimos juego para llenar el DTO completo
+                .Where(uj => uj.JuegoId == juegoInterno.Id)
+                .Select(uj => new UsuarioJuegoDto
+                {
+                    Id = uj.Id,
+                    UsuarioId = uj.UsuarioId,
+                    JuegoId = uj.JuegoId,
+                    FechaAgregado = uj.FechaAgregado,
+                    UsuarioUsername = uj.Usuario.Username,
+                    UsuarioPais = uj.Usuario.Pais,
+                    UsuarioEdad = uj.Usuario.Edad,
+                    UsuarioEstiloJuego = uj.Usuario.EstiloJuego,
+                    JuegoNombre = uj.Juego.Nombre,
+                    JuegoCategoria = uj.Juego.Categoria,
+                    JuegoImagenUrl = uj.Juego.ImagenUrl
+                })
+                .ToListAsync();
+
+            return Ok(usuariosJuegos);
+        }
+
+
         [HttpPost("CrearUsuarioJuego")]
         public async Task<ActionResult<UsuarioJuegoDto>> PostUsuarioJuego(UsuarioJuegoCreacionDto usuarioJuegoCreacionDto)
         {

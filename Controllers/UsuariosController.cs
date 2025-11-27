@@ -99,7 +99,8 @@ namespace TeamFinder.Api.Controllers
                 usuario.Pais,
                 usuario.Edad,
                 usuario.EstiloJuego,
-                usuario.FechaCreacion
+                usuario.FechaCreacion,
+                usuario.AvatarUrl
                 // NO devolvemos la contraseña
             });
         }
@@ -151,6 +152,7 @@ namespace TeamFinder.Api.Controllers
                 Pais = usuarioCreacionDto.Pais,
                 Edad = usuarioCreacionDto.Edad,
                 EstiloJuego = usuarioCreacionDto.EstiloJuego,
+                AvatarUrl = usuarioCreacionDto.AvatarUrl,
                 FechaCreacion = DateTime.UtcNow
             };
 
@@ -165,7 +167,8 @@ namespace TeamFinder.Api.Controllers
                 usuario.Pais,
                 usuario.Edad,
                 usuario.EstiloJuego,
-                usuario.FechaCreacion
+                usuario.FechaCreacion,
+                usuario.AvatarUrl
             });
         }
 
@@ -204,6 +207,11 @@ namespace TeamFinder.Api.Controllers
                 usuarioExistente.Contraseña = PasswordHasher.HashPassword(usuarioActualizacionDto.NuevaContraseña);
             }
 
+            if (!string.IsNullOrEmpty(usuarioActualizacionDto.AvatarUrl))
+            {
+                usuarioExistente.AvatarUrl = usuarioActualizacionDto.AvatarUrl;
+            }
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -229,7 +237,8 @@ namespace TeamFinder.Api.Controllers
                 usuarioExistente.Pais,
                 usuarioExistente.Edad,
                 usuarioExistente.EstiloJuego,
-                usuarioExistente.FechaCreacion
+                usuarioExistente.FechaCreacion,
+                usuarioExistente.AvatarUrl
             });
         }
 

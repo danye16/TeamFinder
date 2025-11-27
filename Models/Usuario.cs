@@ -24,10 +24,15 @@ namespace TeamFinder.Api.Models
         [StringLength(50)]
         public string Pais { get; set; }
 
-        [Required]
+        
         public int Edad { get; set; }
 
-        [Required]
+        [StringLength(250)]
+        public string? Correo { get; set; }
+        [StringLength(250)]
+        public string? AvatarUrl { get; set; }
+
+
         [StringLength(20)]
         public string EstiloJuego { get; set; } // casual, pro, competitivo, etc.
 

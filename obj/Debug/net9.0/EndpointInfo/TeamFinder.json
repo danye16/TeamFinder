@@ -2504,6 +2504,55 @@
         }
       }
     },
+    "/api/UsuarioJuegos/BuscarJugadoresPorSteamId/{steamAppId}": {
+      "get": {
+        "tags": [
+          "UsuarioJuegos"
+        ],
+        "parameters": [
+          {
+            "name": "steamAppId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioJuegoDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioJuegoDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioJuegoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/UsuarioJuegos/CrearUsuarioJuego": {
       "post": {
         "tags": [
@@ -4179,8 +4228,6 @@
       },
       "Usuario": {
         "required": [
-          "edad",
-          "estiloJuego",
           "pais",
           "username"
         ],
@@ -4210,10 +4257,23 @@
             "type": "integer",
             "format": "int32"
           },
+          "correo": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "maxLength": 250,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
           "estiloJuego": {
             "maxLength": 20,
             "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "fechaCreacion": {
             "type": "string",
@@ -4402,6 +4462,14 @@
             "format": "int32"
           },
           "estiloJuego": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
             "type": "string",
             "nullable": true
           }

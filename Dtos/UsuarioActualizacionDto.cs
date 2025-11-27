@@ -26,5 +26,7 @@ namespace TeamFinder.Shared.Dtos
 
         [StringLength(100)]
         public string NuevaContraseña { get; set; }
+
+        public string? AvatarUrl { get; set; }
     }
 }

@@ -27,5 +27,7 @@ namespace TeamFinder.Shared.Dtos
         [Required]
         [StringLength(20)]
         public string EstiloJuego { get; set; }
+
+        public string? AvatarUrl { get; set; }
     }
 }

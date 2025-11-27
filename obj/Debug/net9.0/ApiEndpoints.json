@@ -1461,6 +1461,32 @@
   },
   {
     "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
+    "Method": "GetUsuariosPorSteamAppId",
+    "RelativePath": "api/UsuarioJuegos/BuscarJugadoresPorSteamId/{steamAppId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "steamAppId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[UsuarioJuegoDto, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TeamFinder.Api.Controllers.UsuarioJuegosController",
     "Method": "GetUsuarioJuego",
     "RelativePath": "api/UsuarioJuegos/BuscarUsuarioJuegoEspecifico/{id}",
     "HttpMethod": "GET",
