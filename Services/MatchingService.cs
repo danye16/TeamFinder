@@ -13,7 +13,7 @@ namespace TeamFinder.Api.Services
 
         // NUEVOS MÉTODOS que necesita el controlador
         Task<double> CalcularPorcentajeMatchAsync(int usuarioId1, int usuarioId2, int juegoId);
-        Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId);
+        Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId, int idIniciador);
         Task<bool> AceptarMatchAsync(int matchId, int usuarioId);
         Task<bool> RechazarMatchAsync(int matchId, int usuarioId);
         Task<IEnumerable<Match>> ObtenerMatchesPendientesAsync(int usuarioId);
@@ -172,20 +172,23 @@ namespace TeamFinder.Api.Services
             return await CalcularPorcentajeMatchAsync(pref1, pref2);
         }
 
-        public async Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId)
+        public async Task<Match> CrearMatchAsync(int usuario1Id, int usuario2Id, int juegoId, int idIniciador)
         {
-            // Verificar si ya existe un match entre estos usuarios
+            // 1. BUSCAR SI YA EXISTE (Importante para no duplicar y evitar errores en el chat)
             var matchExistente = await _context.Matches
+                .Include(m => m.Usuario1)
+                .Include(m => m.Usuario2)
                 .FirstOrDefaultAsync(m =>
                     (m.Usuario1Id == usuario1Id && m.Usuario2Id == usuario2Id && m.JuegoId == juegoId) ||
                     (m.Usuario1Id == usuario2Id && m.Usuario2Id == usuario1Id && m.JuegoId == juegoId));
 
+            // Si ya existe, lo devolvemos para que el chat cargue
             if (matchExistente != null)
             {
-                return null; // Ya existe un match
+                return matchExistente;
             }
 
-            // Verificar que ambos usuarios existen
+            // 2. Si no existe, validamos usuarios para crear uno nuevo
             var usuario1Existe = await _context.Usuarios.AnyAsync(u => u.Id == usuario1Id);
             var usuario2Existe = await _context.Usuarios.AnyAsync(u => u.Id == usuario2Id);
             var juegoExiste = await _context.Juegos.AnyAsync(j => j.Id == juegoId);
@@ -200,9 +203,13 @@ namespace TeamFinder.Api.Services
                 Usuario1Id = usuario1Id,
                 Usuario2Id = usuario2Id,
                 JuegoId = juegoId,
-                FechaMatch = DateTime.UtcNow,  
-                AceptadoPorUsuario1 = false,  
-                AceptadoPorUsuario2 = false,   
+                FechaMatch = DateTime.UtcNow,
+
+                // LÓGICA CORREGIDA CON 'idIniciador':
+                // Marca como aceptado SOLO al usuario que inició la acción.
+                AceptadoPorUsuario1 = (usuario1Id == idIniciador),
+                AceptadoPorUsuario2 = (usuario2Id == idIniciador),
+
                 MatchConfirmado = false
             };
 
@@ -252,15 +259,21 @@ namespace TeamFinder.Api.Services
         public async Task<IEnumerable<Match>> ObtenerMatchesPendientesAsync(int usuarioId)
         {
             return await _context.Matches
-                .Where(m => (m.Usuario1Id == usuarioId && !m.AceptadoPorUsuario1) ||  // Usar AceptadoPorUsuario1
-                           (m.Usuario2Id == usuarioId && !m.AceptadoPorUsuario2))     // Usar AceptadoPorUsuario2
+                .Include(m => m.Usuario1) // <--- IMPORTANTE: Incluir datos
+                .Include(m => m.Usuario2) // <--- IMPORTANTE: Incluir datos
+                .Include(m => m.Juego)    // Opcional, para mostrar el icono del juego
+                .Where(m => (m.Usuario1Id == usuarioId && !m.AceptadoPorUsuario1) ||
+                           (m.Usuario2Id == usuarioId && !m.AceptadoPorUsuario2))
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Match>> ObtenerMatchesConfirmadosAsync(int usuarioId)
         {
             return await _context.Matches
-                .Where(m => (m.Usuario1Id == usuarioId && m.MatchConfirmado) ||  // Usar MatchConfirmado
+                .Include(m => m.Usuario1)
+                .Include(m => m.Usuario2)
+                .Include(m => m.Juego)
+                .Where(m => (m.Usuario1Id == usuarioId && m.MatchConfirmado) ||
                            (m.Usuario2Id == usuarioId && m.MatchConfirmado))
                 .ToListAsync();
         }

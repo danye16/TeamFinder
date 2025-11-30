@@ -92,6 +92,29 @@ namespace TeamFinder.Api.Controllers
                 return BadRequest("Remitente o destinatario no válido.");
             }
 
+            var match = await _context.Matches
+            .FirstOrDefaultAsync(m =>
+            (m.Usuario1Id == mensajeCreacionDto.RemitenteId && m.Usuario2Id == mensajeCreacionDto.DestinatarioId) ||
+            (m.Usuario1Id == mensajeCreacionDto.DestinatarioId && m.Usuario2Id == mensajeCreacionDto.RemitenteId));
+
+            if (match == null)
+            {
+                return BadRequest("Debes iniciar un match con este usuario antes de enviarle mensajes.");
+            }
+
+            if (!match.MatchConfirmado)
+            {
+                // Verificar si el remitente es quien falta por aceptar
+                bool remitenteEsUsuario1 = match.Usuario1Id == mensajeCreacionDto.RemitenteId;
+                bool remitenteYaAcepto = remitenteEsUsuario1 ? match.AceptadoPorUsuario1 : match.AceptadoPorUsuario2;
+
+                if (!remitenteYaAcepto)
+                {
+                    // Si el remitente NO ha aceptado el match (es decir, es Daniel intentando contestar a Cono)
+                    return StatusCode(403, "No puedes responder hasta que aceptes el match.");
+                }
+            }
+
             var mensaje = new Mensaje
             {
                 RemitenteId = mensajeCreacionDto.RemitenteId,

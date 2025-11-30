@@ -55,25 +55,37 @@ namespace TeamFinder.Api.Controllers
         [HttpPost("CrearMatch")]
         public async Task<ActionResult<MatchDto>> CrearMatch([FromBody] MatchCreacionDto matchCreacionDto)
         {
-            var match = await _matchingService.CrearMatchAsync(matchCreacionDto.Usuario1Id, matchCreacionDto.Usuario2Id, matchCreacionDto.JuegoId);
+            // 1. Llamamos al servicio pasando el ID de quien inicia (asumiendo que es Usuario1Id)
+            // El servicio nos devuelve la ENTIDAD 'Match' (con los datos de la BD)
+            var match = await _matchingService.CrearMatchAsync(
+                matchCreacionDto.Usuario1Id,
+                matchCreacionDto.Usuario2Id,
+                matchCreacionDto.JuegoId,
+                matchCreacionDto.Usuario1Id // <--- ID del iniciador (quien dio click)
+            );
 
             if (match == null)
             {
-                return BadRequest("No se pudo crear el match. Verifica que los usuarios existan y no tengan ya un match activo.");
+                return BadRequest("No se pudo crear el match. Verifica que los usuarios existan.");
             }
 
+            // 2. Mapeamos la Entidad 'match' hacia tu 'MatchDto'
             var matchDto = new MatchDto
             {
                 Id = match.Id,
                 Usuario1Id = match.Usuario1Id,
                 Usuario2Id = match.Usuario2Id,
                 JuegoId = match.JuegoId,
-                FechaMatch = match.FechaMatch,  
-                AceptadoPorUsuario1 = match.AceptadoPorUsuario1, 
-                AceptadoPorUsuario2 = match.AceptadoPorUsuario2, 
+                FechaMatch = match.FechaMatch,
+
+                // Estas propiedades ahora vendrán con 'true' para el iniciador
+                // gracias al cambio que hicimos en el servicio.
+                AceptadoPorUsuario1 = match.AceptadoPorUsuario1,
+                AceptadoPorUsuario2 = match.AceptadoPorUsuario2,
                 MatchConfirmado = match.MatchConfirmado
             };
 
+            // 3. Retornamos el DTO
             return Ok(matchDto);
         }
 
@@ -93,40 +105,59 @@ namespace TeamFinder.Api.Controllers
 
         // GET: api/Matches/Pendientes/1
         [HttpGet("Pendientes/{usuarioId}")]
-        public async Task<ActionResult<IEnumerable<MatchDto>>> ObtenerMatchesPendientes(int usuarioId)
+        public async Task<ActionResult<IEnumerable<MatchDetalleDto>>> ObtenerMatchesPendientes(int usuarioId)
         {
             var matches = await _matchingService.ObtenerMatchesPendientesAsync(usuarioId);
-
-            var matchesDto = matches.Select(m => new MatchDto
+            // Mapeamos a MatchDetalleDto para tener los nombres y avatares
+            var matchesDto = matches.Select(m => new MatchDetalleDto
             {
                 Id = m.Id,
-                Usuario1Id = m.Usuario1Id,
-                Usuario2Id = m.Usuario2Id,
-                JuegoId = m.JuegoId,
-                FechaMatch = m.FechaMatch,  
-                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,  
-                AceptadoPorUsuario2 = m.AceptadoPorUsuario2,  
-                MatchConfirmado = m.MatchConfirmado
+                Usuario1 = new UsuarioDto { Id = m.Usuario1.Id, Username = m.Usuario1.Username, AvatarUrl = m.Usuario1.AvatarUrl }, // Asegúrate de incluir AvatarUrl si lo tienes en UsuarioDto
+                Usuario2 = new UsuarioDto { Id = m.Usuario2.Id, Username = m.Usuario2.Username, AvatarUrl = m.Usuario2.AvatarUrl },
+                Juego = new JuegoDto { Id = m.Juego.Id, Nombre = m.Juego.Nombre, ImagenUrl = m.Juego.ImagenUrl },
+                MatchConfirmado = m.MatchConfirmado,
+                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,
+                AceptadoPorUsuario2 = m.AceptadoPorUsuario2
             });
-
             return Ok(matchesDto);
         }
         // GET: api/Matches/Confirmados/1
         [HttpGet("Confirmados/{usuarioId}")]
-        public async Task<ActionResult<IEnumerable<MatchDto>>> ObtenerMatchesConfirmados(int usuarioId)
+        // 1. Cambia 'MatchDto' por 'MatchDetalleDto' en el tipo de retorno
+        public async Task<ActionResult<IEnumerable<MatchDetalleDto>>> ObtenerMatchesConfirmados(int usuarioId)
         {
             var matches = await _matchingService.ObtenerMatchesConfirmadosAsync(usuarioId);
 
-            var matchesDto = matches.Select(m => new MatchDto
+            // 2. Cambia 'new MatchDto' por 'new MatchDetalleDto' aquí también
+            var matchesDto = matches.Select(m => new MatchDetalleDto
             {
                 Id = m.Id,
-                Usuario1Id = m.Usuario1Id,
-                Usuario2Id = m.Usuario2Id,
-                JuegoId = m.JuegoId,
-                FechaMatch = m.FechaMatch,  
-                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,  
-                AceptadoPorUsuario2 = m.AceptadoPorUsuario2,  
-                MatchConfirmado = m.MatchConfirmado
+
+                // Ahora sí funcionará porque MatchDetalleDto espera objetos completos
+                Usuario1 = new UsuarioDto
+                {
+                    Id = m.Usuario1.Id,
+                    Username = m.Usuario1.Username,
+                    AvatarUrl = m.Usuario1.AvatarUrl // Asegúrate que tu Usuario tenga esta propiedad
+                },
+
+                Usuario2 = new UsuarioDto
+                {
+                    Id = m.Usuario2.Id,
+                    Username = m.Usuario2.Username,
+                    AvatarUrl = m.Usuario2.AvatarUrl
+                },
+
+                Juego = new JuegoDto
+                {
+                    Id = m.Juego.Id,
+                    Nombre = m.Juego.Nombre,
+                    ImagenUrl = m.Juego.ImagenUrl
+                },
+
+                MatchConfirmado = m.MatchConfirmado,
+                AceptadoPorUsuario1 = m.AceptadoPorUsuario1,
+                AceptadoPorUsuario2 = m.AceptadoPorUsuario2
             });
 
             return Ok(matchesDto);
