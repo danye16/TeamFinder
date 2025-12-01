@@ -13,7 +13,7 @@ namespace TeamFinder.Api.Controllers
     {
         private readonly TeamFinderDbContext _context;
 
-
+        //COMENTARIO NUEVO: DTO para el login con Steam
         public class SteamLoginDto
         {
             public string SteamId { get; set; }
@@ -87,7 +87,7 @@ namespace TeamFinder.Api.Controllers
             // 3. Comparamos los hashes
             if (usuario.Contraseña != hashIntento)
             {
-                return Unauthorized("Contraseña incorrecta.");
+                return Unauthorized("Contraseña mal.");
             }
 
             // 4. Si todo coincide, devolvemos el usuario
