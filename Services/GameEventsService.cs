@@ -11,7 +11,7 @@ namespace TeamFinder.Api.Services
         Task<EventoGaming> CrearEventoAsync(EventoGaming evento);
         Task<bool> ActualizarEventoAsync(EventoGaming evento);
         Task<bool> EliminarEventoAsync(int eventoId);
-        Task<bool> UnirseEventoAsync(int eventoId, int usuarioId);
+        Task<bool> UnirseEventoAsync(int eventoId, int usuarioId, string nick, string rol);
         Task<bool> AbandonarEventoAsync(int eventoId, int usuarioId);
         Task<bool> ConfirmarParticipacionAsync(int eventoId, int usuarioId, bool confirmado);
         Task<IEnumerable<EventoParticipante>> ObtenerParticipantesAsync(int eventoId);
@@ -150,7 +150,7 @@ namespace TeamFinder.Api.Services
             return true;
         }
 
-        public async Task<bool> UnirseEventoAsync(int eventoId, int usuarioId)
+        public async Task<bool> UnirseEventoAsync(int eventoId, int usuarioId, string nick, string rol)
         {
             // Verificar si el evento existe
             var evento = await _context.EventosGaming.FindAsync(eventoId);
@@ -194,15 +194,16 @@ namespace TeamFinder.Api.Services
             }
 
             // Agregar al evento
-            var participacion = new EventoParticipante
+            var nuevoParticipante = new EventoParticipante
             {
                 EventoId = eventoId,
                 UsuarioId = usuarioId,
-                FechaRegistro = DateTime.UtcNow,
-                Confirmado = false
+                NickEnEvento = nick, // Guardamos
+                RolElegido = rol,    // Guardamos
+                FechaRegistro = DateTime.Now
             };
 
-            _context.EventoParticipantes.Add(participacion);
+            _context.EventoParticipantes.Add(nuevoParticipante);
             await _context.SaveChangesAsync();
             return true;
         }

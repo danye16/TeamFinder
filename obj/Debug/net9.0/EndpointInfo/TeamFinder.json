@@ -196,8 +196,39 @@
         }
       }
     },
-    "/api/EventosGaming/Unirse/{eventoId}/{usuarioId}": {
+    "/api/EventosGaming/Unirse": {
       "post": {
+        "tags": [
+          "EventosGaming"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnirseEventoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnirseEventoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnirseEventoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EventosGaming/Participantes/{eventoId}": {
+      "get": {
         "tags": [
           "EventosGaming"
         ],
@@ -210,20 +241,37 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "usuarioId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventoParticipanteDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventoParticipanteDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventoParticipanteDto"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -307,55 +355,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/EventosGaming/Participantes/{eventoId}": {
-      "get": {
-        "tags": [
-          "EventosGaming"
-        ],
-        "parameters": [
-          {
-            "name": "eventoId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventoParticipanteDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventoParticipanteDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventoParticipanteDto"
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -1099,7 +1098,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               },
@@ -1107,7 +1106,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               },
@@ -1115,7 +1114,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               }
@@ -1148,7 +1147,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               },
@@ -1156,7 +1155,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               },
@@ -1164,7 +1163,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/MatchDto"
+                    "$ref": "#/components/schemas/MatchDetalleDto"
                   }
                 }
               }
@@ -3339,6 +3338,8 @@
       "EventoParticipante": {
         "required": [
           "eventoId",
+          "nickEnEvento",
+          "rolElegido",
           "usuarioId"
         ],
         "type": "object",
@@ -3354,6 +3355,16 @@
           "usuarioId": {
             "type": "integer",
             "format": "int32"
+          },
+          "nickEnEvento": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "rolElegido": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
           "fechaRegistro": {
             "type": "string",
@@ -3394,6 +3405,14 @@
             "type": "boolean"
           },
           "usuarioUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "nickEnEvento": {
+            "type": "string",
+            "nullable": true
+          },
+          "rolElegido": {
             "type": "string",
             "nullable": true
           }
@@ -4226,6 +4245,34 @@
         },
         "additionalProperties": false
       },
+      "UnirseEventoDto": {
+        "required": [
+          "eventoId",
+          "nickEnEvento",
+          "rolElegido",
+          "usuarioId"
+        ],
+        "type": "object",
+        "properties": {
+          "eventoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usuarioId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nickEnEvento": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rolElegido": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "Usuario": {
         "required": [
           "pais",
@@ -4393,6 +4440,10 @@
             "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4438,6 +4489,10 @@
             "maxLength": 20,
             "minLength": 0,
             "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -8,5 +8,8 @@
         public DateTime FechaRegistro { get; set; }
         public bool Confirmado { get; set; }
         public string UsuarioUsername { get; set; }
+
+        public string NickEnEvento { get; set; }
+        public string RolElegido { get; set; }
     }
 }

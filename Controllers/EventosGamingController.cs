@@ -108,18 +108,49 @@ namespace TeamFinder.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/EventosGaming/Unirse/5/1
-        [HttpPost("Unirse/{eventoId}/{usuarioId}")]
-        public async Task<IActionResult> UnirseEvento(int eventoId, int usuarioId)
+        // POST: api/EventosGaming/Unirse
+        [HttpPost("Unirse")]
+        public async Task<IActionResult> UnirseEvento([FromBody] UnirseEventoDto dto)
         {
-            var resultado = await _gameEventsService.UnirseEventoAsync(eventoId, usuarioId);
+            // Validamos que vengan los datos
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            // Pasamos el Nick y Rol al servicio
+            var resultado = await _gameEventsService.UnirseEventoAsync(
+                dto.EventoId,
+                dto.UsuarioId,
+                dto.NickEnEvento,
+                dto.RolElegido
+            );
 
             if (!resultado)
             {
-                return BadRequest("No se pudo unir al evento. Verifica si el evento existe, si ya estás participando o si hay cupo disponible.");
+                return BadRequest("No se pudo unir al evento. Verifica cupos o si ya estás inscrito.");
             }
 
             return Ok(new { message = "Te has unido al evento exitosamente." });
+        }
+
+        [HttpGet("Participantes/{eventoId}")]
+        public async Task<ActionResult<IEnumerable<EventoParticipanteDto>>> GetParticipantes(int eventoId)
+        {
+            var participantes = await _gameEventsService.ObtenerParticipantesAsync(eventoId);
+
+            var dto = participantes.Select(p => new EventoParticipanteDto
+            {
+                Id = p.Id,
+                EventoId = p.EventoId,
+                UsuarioId = p.UsuarioId,
+                FechaRegistro = p.FechaRegistro,
+                Confirmado = p.Confirmado,
+                UsuarioUsername = p.Usuario.Username,
+
+                // Mapeamos los nuevos datos
+                NickEnEvento = p.NickEnEvento,
+                RolElegido = p.RolElegido
+            }).ToList();
+
+            return Ok(dto);
         }
 
         // DELETE: api/EventosGaming/Abandonar/5/1
@@ -151,21 +182,21 @@ namespace TeamFinder.Api.Controllers
         }
 
         // GET: api/EventosGaming/Participantes/5
-        [HttpGet("Participantes/{eventoId}")]
-        public async Task<ActionResult<IEnumerable<EventoParticipanteDto>>> GetParticipantes(int eventoId)
-        {
-            var participantes = await _gameEventsService.ObtenerParticipantesAsync(eventoId);
-            var participantesDto = participantes.Select(p => new EventoParticipanteDto
-            {
-                Id = p.Id,
-                EventoId = p.EventoId,
-                UsuarioId = p.UsuarioId,
-                FechaRegistro = p.FechaRegistro,
-                Confirmado = p.Confirmado,
-                UsuarioUsername = p.Usuario.Username // Asumiendo que el servicio incluye el usuario
-            }).ToList();
-            return Ok(participantesDto);
-        }
+        //[HttpGet("Participantes/{eventoId}")]
+        //public async Task<ActionResult<IEnumerable<EventoParticipanteDto>>> GetParticipantes(int eventoId)
+        //{
+        //    var participantes = await _gameEventsService.ObtenerParticipantesAsync(eventoId);
+        //    var participantesDto = participantes.Select(p => new EventoParticipanteDto
+        //    {
+        //        Id = p.Id,
+        //        EventoId = p.EventoId,
+        //        UsuarioId = p.UsuarioId,
+        //        FechaRegistro = p.FechaRegistro,
+        //        Confirmado = p.Confirmado,
+        //        UsuarioUsername = p.Usuario.Username // Asumiendo que el servicio incluye el usuario
+        //    }).ToList();
+        //    return Ok(participantesDto);
+        //}
 
         // GET: api/EventosGaming/Juego/1
         [HttpGet("Juego/{juegoId}")]

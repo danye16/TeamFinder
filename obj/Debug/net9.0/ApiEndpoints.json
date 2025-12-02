@@ -282,19 +282,14 @@
   {
     "ContainingType": "TeamFinder.Api.Controllers.EventosGamingController",
     "Method": "UnirseEvento",
-    "RelativePath": "api/EventosGaming/Unirse/{eventoId}/{usuarioId}",
+    "RelativePath": "api/EventosGaming/Unirse",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "eventoId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "usuarioId",
-        "Type": "System.Int32",
+        "Name": "dto",
+        "Type": "TeamFinder.Dtos.UnirseEventoDto",
         "IsRequired": true
       }
     ],
@@ -591,7 +586,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Dtos.MatchDto, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Dtos.MatchDetalleDto, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -669,7 +664,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Dtos.MatchDto, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TeamFinder.Dtos.MatchDetalleDto, TeamFinder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

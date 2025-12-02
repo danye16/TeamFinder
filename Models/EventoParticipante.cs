@@ -13,6 +13,14 @@ namespace TeamFinder.Api.Models
         [Required]
         public int UsuarioId { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string NickEnEvento { get; set; } 
+
+        [Required]
+        [StringLength(50)]
+        public string RolElegido { get; set; } 
+
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
 
         public bool Confirmado { get; set; } = false;
