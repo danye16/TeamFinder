@@ -2,7 +2,7 @@ name: Deploy .NET Core App to Somee via FTP
 
 on:
   push:
-    branches: [ "develop" ] # Se activa al hacer push a la rama main
+    branches: [ "develop" ]
 
 jobs:
   build-and-deploy:
@@ -12,22 +12,49 @@ jobs:
     # 1. Bajar el código
     - uses: actions/checkout@v4
 
-    # 2. Instalar .NET en el servidor de compilación (ajusta la versión, ej: 6.0, 7.0, 8.0)
+    # 2. Instalar .NET
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x 
+        dotnet-version: 8.0.x
 
-    # 3. Compilar y Publicar (Generar los archivos DLL)
+    # 3. Compilar
     - name: Publish
       run: dotnet publish -c Release -o ./publish
 
-    # 4. Subir los archivos compilados a Somee via FTP
+    # 4. Crear el archivo app_offline.htm (El Interruptor)
+    - name: Create app_offline.htm
+      run: |
+        echo "<html><body><h1>Actualizando Sitio... Espere un momento.</h1></body></html>" > app_offline.htm
+
+    # 5. FASE 1: APAGAR EL SITIO (Subir app_offline.htm)
+    - name: Stop App (Upload app_offline.htm)
+      run: |
+        sudo apt-get update
+        sudo apt-get install lftp
+        lftp -e "set ssl:verify-certificate no; put app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+
+    # 6. Esperar un poco a que Somee libere los archivos
+    - name: Wait for Lock Release
+      run: sleep 10
+
+    # 7. FASE 2: DESPLEGAR (Usando tu acción original)
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./publish/  # Carpeta local con los archivos compilados
-        server-dir: /www.TeamFinderApiv2.somee.com/ # ¡IMPORTANTE! La ruta en Somee donde van los archivos
+        local-dir: ./publish/
+        server-dir: /www.TeamFinderApiv2.somee.com/
+        # Importante: Excluimos app_offline para que esta acción no lo borre antes de tiempo
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/app_offline.htm 
+
+    # 8. FASE 3: ARRANCAR EL SITIO (Borrar app_offline.htm)
+    - name: Start App (Remove app_offline.htm)
+      if: always() # Se ejecuta aunque el paso anterior falle, para no dejar el sitio apagado
+      run: |
+        lftp -e "set ssl:verify-certificate no; rm app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
