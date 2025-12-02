@@ -152,30 +152,30 @@ namespace TeamFinder.Api.Services
 
         public async Task<bool> UnirseEventoAsync(int eventoId, int usuarioId, string nick, string rol)
         {
-            // Verificar si el evento existe
+            // 1. Verificar si el evento existe
             var evento = await _context.EventosGaming.FindAsync(eventoId);
             if (evento == null)
             {
                 return false;
             }
 
-            // Verificar si el usuario existe
+            // 2. Verificar si el usuario existe (Buena práctica de seguridad)
             var usuarioExiste = await _context.Usuarios.AnyAsync(u => u.Id == usuarioId);
             if (!usuarioExiste)
             {
                 return false;
             }
 
-            // Verificar si el usuario ya está participando
+            // 3. Verificar si el usuario YA está participando (Evitar duplicados)
             var participacionExistente = await _context.EventoParticipantes
                 .AnyAsync(ep => ep.EventoId == eventoId && ep.UsuarioId == usuarioId);
 
             if (participacionExistente)
             {
-                return false;
+                return false; // Ya está unido
             }
 
-            // Verificar si hay cupo disponible
+            // 4. Verificar cupo disponible (Solo si hay límite configurado)
             if (evento.MaxParticipantes > 0)
             {
                 var participantesActuales = await _context.EventoParticipantes
@@ -183,28 +183,31 @@ namespace TeamFinder.Api.Services
 
                 if (participantesActuales >= evento.MaxParticipantes)
                 {
-                    return false;
+                    return false; // Evento lleno
                 }
             }
 
-            // Verificar que el evento no haya comenzado
-            if (evento.FechaInicio <= DateTime.UtcNow)
+            // 5. Verificar que el evento no haya comenzado ya
+            // Usamos DateTime.Now para consistencia con tus modelos
+            if (evento.FechaInicio <= DateTime.Now)
             {
-                return false;
+                return false; // El evento ya empezó o terminó
             }
 
-            // Agregar al evento
+            // 6. Todo correcto: Crear la inscripción
             var nuevoParticipante = new EventoParticipante
             {
                 EventoId = eventoId,
                 UsuarioId = usuarioId,
-                NickEnEvento = nick, // Guardamos
-                RolElegido = rol,    // Guardamos
-                FechaRegistro = DateTime.Now
+                NickEnEvento = nick,  // Guardamos el Nick ingresado en la PWA
+                RolElegido = rol,     // Guardamos el Rol seleccionado en la PWA
+                FechaRegistro = DateTime.Now,
+                Confirmado = true     // Asumimos confirmado al unirse (o false si requiere aprobación)
             };
 
             _context.EventoParticipantes.Add(nuevoParticipante);
             await _context.SaveChangesAsync();
+
             return true;
         }
 

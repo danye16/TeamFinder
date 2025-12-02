@@ -1,9 +1,8 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\",
+  "WorkspaceRootPath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\",
   "Documents": [
     {
-<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\services\\gameeventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:services\\gameeventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,18 +29,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\controllers\\matchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\matchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinder\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> 2cffcb13b317dcb138ba26715e4ae981cc99e2ab
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\services\\matchingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:services\\matchingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\dtos\\matchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:dtos\\matchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -56,13 +59,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-<<<<<<< HEAD
               "Title": "GameEventsService.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\GameEventsService.cs",
               "RelativeDocumentMoniker": "Services\\GameEventsService.cs",
               "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\GameEventsService.cs",
               "RelativeToolTip": "Services\\GameEventsService.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAA7wCgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAAAiwNMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T03:23:25.318Z",
               "EditorCaption": ""
@@ -77,8 +79,7 @@
               "RelativeToolTip": "Dtos\\EventoParticipanteDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T03:20:20.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-02T03:20:20.528Z"
             },
             {
               "$type": "Document",
@@ -90,8 +91,7 @@
               "RelativeToolTip": "Dtos\\UnirseEventoDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T03:20:06.583Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-02T03:20:06.583Z"
             },
             {
               "$type": "Document",
@@ -103,8 +103,7 @@
               "RelativeToolTip": "Models\\EventoParticipante.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-30T18:26:48.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-30T18:26:48.267Z"
             },
             {
               "$type": "Document",
@@ -126,7 +125,7 @@
               "RelativeDocumentMoniker": "Controllers\\EventosGamingController.cs",
               "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\EventosGamingController.cs",
               "RelativeToolTip": "Controllers\\EventosGamingController.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAADgv3cAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAADgv3YAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-30T18:25:44.003Z",
               "EditorCaption": ""
@@ -164,33 +163,11 @@
               "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\MatchingService.cs",
               "RelativeToolTip": "Services\\MatchingService.cs",
               "ViewState": "AgIAAMYAAAAAAAAAAADwv9oAAAAJAAAAAAAAAA==",
-=======
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAwBAAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T16:39:52.2Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-27T01:22:26.846Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAxAAAAAAAAAA==",
->>>>>>> 2cffcb13b317dcb138ba26715e4ae981cc99e2ab
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:21:02.555Z"
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 9,
               "Title": "MensajesController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MensajesController.cs",
@@ -198,20 +175,10 @@
               "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MensajesController.cs",
               "RelativeToolTip": "Controllers\\MensajesController.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAAAHMAAAANAAAAAAAAAA==",
-=======
-              "DocumentIndex": 2,
-              "Title": "TeamFinderDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Data\\TeamFinderDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
-              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinder\\Data\\TeamFinderDbContext.cs",
-              "RelativeToolTip": "Data\\TeamFinderDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
->>>>>>> 2cffcb13b317dcb138ba26715e4ae981cc99e2ab
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:20:47.597Z"
+              "WhenOpened": "2025-11-27T01:24:03.082Z"
             },
             {
-<<<<<<< HEAD
               "$type": "Document",
               "DocumentIndex": 10,
               "Title": "Usuario.cs",
@@ -222,10 +189,6 @@
               "ViewState": "AgIAABUAAAAAAAAAAAAUwCAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T05:13:31.234Z"
-=======
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
->>>>>>> 2cffcb13b317dcb138ba26715e4ae981cc99e2ab
             }
           ]
         }

@@ -6174,11 +6174,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sebas\\Source\\Repos\\TeamFinder\\TeamFinder.csproj",
+      "projectUniqueName": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\TeamFinder.csproj",
       "projectName": "TeamFinder",
-      "projectPath": "C:\\Users\\sebas\\Source\\Repos\\TeamFinder\\TeamFinder.csproj",
+      "projectPath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\TeamFinder.csproj",
       "packagesPath": "C:\\Users\\sebas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sebas\\Source\\Repos\\TeamFinder\\obj\\",
+      "outputPath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
