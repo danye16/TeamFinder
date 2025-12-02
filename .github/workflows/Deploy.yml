@@ -22,23 +22,23 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o ./publish
 
-    # 4. Crear el archivo app_offline.htm (El Interruptor)
+    # 4. Crear el archivo app_offline.htm
     - name: Create app_offline.htm
       run: |
         echo "<html><body><h1>Actualizando Sitio... Espere un momento.</h1></body></html>" > app_offline.htm
 
-    # 5. FASE 1: APAGAR EL SITIO (Subir app_offline.htm)
+    # 5. FASE 1: APAGAR EL SITIO (Entrar a la carpeta -> Subir app_offline.htm)
     - name: Stop App (Upload app_offline.htm)
       run: |
         sudo apt-get update
         sudo apt-get install lftp
-        lftp -e "set ssl:verify-certificate no; put app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+        lftp -e "set ssl:verify-certificate no; cd /www.TeamFinderApiv2.somee.com/; put app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
 
-    # 6. Esperar un poco a que Somee libere los archivos
+    # 6. Esperar a que se liberen los archivos
     - name: Wait for Lock Release
       run: sleep 10
 
-    # 7. FASE 2: DESPLEGAR (Usando tu acción original)
+    # 7. FASE 2: DESPLEGAR (Ignorando app_offline para no borrarlo)
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -47,14 +47,13 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./publish/
         server-dir: /www.TeamFinderApiv2.somee.com/
-        # Importante: Excluimos app_offline para que esta acción no lo borre antes de tiempo
         exclude: |
           **/.git*
           **/.git*/**
-          **/app_offline.htm 
+          **/app_offline.htm
 
-    # 8. FASE 3: ARRANCAR EL SITIO (Borrar app_offline.htm)
+    # 8. FASE 3: ARRANCAR EL SITIO (Entrar a la carpeta -> Borrar app_offline.htm)
     - name: Start App (Remove app_offline.htm)
-      if: always() # Se ejecuta aunque el paso anterior falle, para no dejar el sitio apagado
+      if: always()
       run: |
-        lftp -e "set ssl:verify-certificate no; rm app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+        lftp -e "set ssl:verify-certificate no; cd /www.TeamFinderApiv2.somee.com/; rm app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
