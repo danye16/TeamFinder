@@ -18,7 +18,7 @@ namespace TeamFinder.Api.Models
         public string Contraseña { get; set; }
 
         [StringLength(50)]
-        public string SteamId { get; set; }
+        public string? SteamId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -34,7 +34,7 @@ namespace TeamFinder.Api.Models
 
 
         [StringLength(20)]
-        public string EstiloJuego { get; set; } // casual, pro, competitivo, etc.
+        public string? EstiloJuego { get; set; } // casual, pro, competitivo, etc.
 
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 

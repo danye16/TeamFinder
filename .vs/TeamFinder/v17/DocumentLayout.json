@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\dtos\\usuariocreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:dtos\\usuariocreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\services\\gameeventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:services\\gameeventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -41,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\mensajescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\sebas\\source\\repos\\teamfinderapisubir\\teamfinder\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,11 +58,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "UsuarioCreacionDto.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Dtos\\UsuarioCreacionDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\UsuarioCreacionDto.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Dtos\\UsuarioCreacionDto.cs",
+              "RelativeToolTip": "Dtos\\UsuarioCreacionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T21:15:02.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GameEventsService.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\GameEventsService.cs",
               "RelativeDocumentMoniker": "Services\\GameEventsService.cs",
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "EventoParticipanteDto.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Dtos\\EventoParticipanteDto.cs",
               "RelativeDocumentMoniker": "Dtos\\EventoParticipanteDto.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UnirseEventoDto.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Dtos\\UnirseEventoDto.cs",
               "RelativeDocumentMoniker": "Dtos\\UnirseEventoDto.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "EventoParticipante.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\EventoParticipante.cs",
               "RelativeDocumentMoniker": "Models\\EventoParticipante.cs",
@@ -107,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "EventoGaming.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\EventoGaming.cs",
               "RelativeDocumentMoniker": "Models\\EventoGaming.cs",
@@ -119,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "EventosGamingController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\EventosGamingController.cs",
               "RelativeDocumentMoniker": "Controllers\\EventosGamingController.cs",
@@ -127,12 +144,11 @@
               "RelativeToolTip": "Controllers\\EventosGamingController.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAADgv3YAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-30T18:25:44.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-30T18:25:44.003Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "MatchDto.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Dtos\\MatchDto.cs",
               "RelativeDocumentMoniker": "Dtos\\MatchDto.cs",
@@ -144,7 +160,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA3wB0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T05:13:31.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "MatchesController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MatchesController.cs",
               "RelativeDocumentMoniker": "Controllers\\MatchesController.cs",
@@ -156,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MatchingService.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Services\\MatchingService.cs",
               "RelativeDocumentMoniker": "Services\\MatchingService.cs",
@@ -168,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "MensajesController.cs",
               "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Controllers\\MensajesController.cs",
               "RelativeDocumentMoniker": "Controllers\\MensajesController.cs",
@@ -177,18 +206,6 @@
               "ViewState": "AgIAAF0AAAAAAAAAAAAAAHMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T01:24:03.082Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\sebas\\source\\repos\\TeamFinderApiSubir\\TeamFinder\\Models\\Usuario.cs",
-              "RelativeToolTip": "Models\\Usuario.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAUwCAAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T05:13:31.234Z"
             }
           ]
         }
