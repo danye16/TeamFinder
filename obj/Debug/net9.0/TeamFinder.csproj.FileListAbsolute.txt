@@ -473,3 +473,17 @@ C:\Users\sebas\source\repos\TeamFinderApiSubir\TeamFinder\obj\Debug\net9.0\TeamF
 C:\Users\sebas\source\repos\TeamFinderApiSubir\TeamFinder\obj\Debug\net9.0\TeamFinder.genruntimeconfig.cache
 C:\Users\sebas\source\repos\TeamFinderApiSubir\TeamFinder\obj\Debug\net9.0\ref\TeamFinder.dll
 C:\Users\sebas\source\repos\TeamFinderApiSubir\TeamFinder\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.csproj.AssemblyReference.cache
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.AssemblyInfoInputs.cache
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.AssemblyInfo.cs
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.csproj.CoreCompileInputs.cache
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.RazorAssemblyInfo.cache
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.RazorAssemblyInfo.cs
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.sourcelink.json
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.dll
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\refint\TeamFinder.dll
+C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.pdb
