@@ -1,7 +1,9 @@
-name: Deploy .NET Core App to Somee via FTP
+name: CI/CD Build, Test and Deploy
 
 on:
   push:
+    branches: [ "develop" ]
+  pull_request:
     branches: [ "develop" ]
 
 jobs:
@@ -9,36 +11,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Bajar el código
+    # 1. Descargar el código
     - uses: actions/checkout@v4
 
-    # 2. Instalar .NET
+    # 2. Configurar .NET 8
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # 3. Compilar
-    - name: Publish
-      run: dotnet publish -c Release -o ./publish
+    # 3. Restaurar dependencias
+    - name: Restore dependencies
+      run: dotnet restore
 
-    # 4. Crear el archivo app_offline.htm
-    - name: Create app_offline.htm
-      run: |
-        echo "<html><body><h1>Actualizando Sitio... Espere un momento.</h1></body></html>" > app_offline.htm
+    # 4. Compilar (Build)
+    - name: Build
+      run: dotnet build --no-restore
 
-    # 5. FASE 1: APAGAR EL SITIO (Entrar a la carpeta -> Subir app_offline.htm)
+    # 5. Ejecutar Pruebas (Test)
+    # Si falla, se detiene todo aquí.
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+    # -------------------------------------------------------------------
+    # ZONA DE DESPLIEGUE (Solo si los tests pasan)
+    # -------------------------------------------------------------------
+
+    # 6. APAGAR SERVIDOR (Stop)
+    # Creamos un app_offline.htm y lo subimos. Esto libera los archivos .dll en Somee.
     - name: Stop App (Upload app_offline.htm)
       run: |
-        sudo apt-get update
-        sudo apt-get install lftp
-        lftp -e "set ssl:verify-certificate no; cd /www.TeamFinderApiv2.somee.com/; put app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+        echo "<html><head><title>Mantenimiento</title></head><body><h1>Sitio en mantenimiento, volvemos pronto...</h1></body></html>" > app_offline.htm
+        # Subimos el archivo usando curl. Ajustamos la ruta según tu 'server-dir'.
+        curl -T app_offline.htm -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv1.somee.com/
 
-    # 6. Esperar a que se liberen los archivos
-    - name: Wait for Lock Release
-      run: sleep 10
+    # 7. Publicar (Generar archivos DLL)
+    - name: Publish
+      run: dotnet publish TeamFinderApiv1/TeamFinderApiv1.csproj -c Release -o ./publish
 
-    # 7. FASE 2: DESPLEGAR (Ignorando app_offline para no borrarlo)
+    # 8. Desplegar Archivos (Deploy)
+    # Sobrescribe los archivos de la aplicación.
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -47,13 +59,9 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./publish/
         server-dir: /www.TeamFinderApiv2.somee.com/
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/app_offline.htm
 
-    # 8. FASE 3: ARRANCAR EL SITIO (Entrar a la carpeta -> Borrar app_offline.htm)
+    # 9. ARRANCAR SERVIDOR (Start)
+    # Borramos el app_offline.htm para que el sitio vuelva a funcionar.
     - name: Start App (Remove app_offline.htm)
-      if: always()
       run: |
-        lftp -e "set ssl:verify-certificate no; cd /www.TeamFinderApiv2.somee.com/; rm app_offline.htm; bye" -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+        curl -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv1.somee.com/ -Q "-DELE app_offline.htm"
