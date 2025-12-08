@@ -1,0 +1,60 @@
+# Define el nombre del flujo de trabajo
+name: SonarCloud Scan - .NET
+
+# Define cuándo se ejecutará: al pushear código o al crear un Pull Request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build:
+    runs-on: windows-latest # Usa un agente de Windows, recomendado para .NET Framework/MSBuild
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          # Es crucial para obtener un historial completo para el análisis de SonarCloud
+          fetch-depth: 0 
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x' # Ajusta a la versión que uses (e.g., '3.1.x', '6.0.x', '8.0.x')
+
+      - name: Setup Java 17 (Necesario para el Scanner)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+      
+      # 1. Instalar la herramienta del Scanner de .NET
+      - name: Install SonarCloud Scanner Tool
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      # 2. Restaurar dependencias (nuget restore)
+      - name: Restore dependencies
+        run: dotnet restore
+        
+      # 3. Analizar, Construir y Enviar Resultados
+      - name: Run SonarCloud Scan (BEGIN, BUILD, END)
+        env:
+          # El SONAR_TOKEN debe configurarse como un Secret en tu repositorio de GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+          
+        run: |
+          # A. BEGIN: Inicializa el análisis y define las propiedades obligatorias
+          dotnet sonarscanner begin /k:"MI_PROJECT_KEY_DE_SONAR" /o:"MI_ORGANIZATION_DE_SONAR" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          
+          # B. BUILD: Compila la solución (Reemplaza por tu comando específico de compilación si es necesario)
+          dotnet build --no-incremental
+          
+          # C. END: Finaliza el análisis y envía los resultados a SonarCloud
+          dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
