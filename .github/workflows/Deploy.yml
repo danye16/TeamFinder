@@ -38,19 +38,23 @@ jobs:
     # -------------------------------------------------------------------
 
     # 6. APAGAR SERVIDOR (Stop)
-    # Creamos un app_offline.htm y lo subimos. Esto libera los archivos .dll en Somee.
     - name: Stop App (Upload app_offline.htm)
       run: |
-        echo "<html>...</html>" > app_offline.htm
-        # Asegúrate de que esta URL coincida con la del paso 8
-        curl -T app_offline.htm -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/
+        echo "<html><head><title>Mantenimiento</title></head><body><h1>Sitio en mantenimiento...</h1></body></html>" > app_offline.htm
+        
+        # CORRECCIÓN 1: Agregamos "ftp://" al inicio de la URL para forzar el protocolo FTP.
+        # CORRECCIÓN 2: Agregamos --ftp-create-dirs por seguridad.
+        curl -T app_offline.htm -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/" --ftp-create-dirs
+        
+        # CORRECCIÓN 3: Esperamos 10 segundos para asegurar que IIS libere el candado del archivo .dll
+        echo "Esperando a que IIS libere los archivos..."
+        sleep 10
 
-    # 7. Publicar 
+    # 7. Publicar (ESTE LO DEJAS IGUAL)
     - name: Publish
-      # Ajusta la ruta ./TeamFinder.csproj si está dentro de una carpeta
       run: dotnet publish TeamFinder.csproj -c Release -o ./publish
 
-    # 8. Desplegar Archivos 
+    # 8. Desplegar Archivos (ESTE LO DEJAS IGUAL)
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -60,7 +64,8 @@ jobs:
         local-dir: ./publish/
         server-dir: /www.TeamFinderApiv2.somee.com/
 
-    # 9. ARRANCAR SERVIDOR 
+    # 9. ARRANCAR SERVIDOR (Start)
     - name: Start App (Remove app_offline.htm)
       run: |
-        curl -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/ -Q "-DELE app_offline.htm"
+        # CORRECCIÓN: También agregamos "ftp://" aquí para que pueda borrar el archivo.
+        curl -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/" -Q "-DELE app_offline.htm"
