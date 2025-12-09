@@ -47,6 +47,7 @@ jobs:
         
       # PASO 4: END (Finaliza el análisis y sube los resultados)
       - name: SonarScanner End
-        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner end
+        
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
