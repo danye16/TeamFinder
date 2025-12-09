@@ -1,26 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\",
+  "WorkspaceRootPath": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\teamfinder.tests\\usuariosintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|solutionrelative:teamfinder.tests\\usuariosintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\teamfinder.tests\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|solutionrelative:teamfinder.tests\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\teamfinder.tests\\usuarioscontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|solutionrelative:teamfinder.tests\\usuarioscontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\teamfinder.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E74E44FF-6A1C-48F7-8296-EC61B29EF1A5}|TeamFinder.Tests\\TeamFinder.Tests.csproj|solutionrelative:teamfinder.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\models\\eventogaming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\models\\eventogaming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\eventogaming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\uts2025\\documents\\teamfinder\\teamfinder\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:data\\teamfinderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,15 +50,105 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TeamFinder.Tests\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "TeamFinder.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T15:21:34.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAcwBgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T15:16:53.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UsuariosIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UsuariosIntegrationTests.cs",
+              "RelativeDocumentMoniker": "TeamFinder.Tests\\UsuariosIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UsuariosIntegrationTests.cs",
+              "RelativeToolTip": "TeamFinder.Tests\\UsuariosIntegrationTests.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAowB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T15:15:40.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuariosControllerTests.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UsuariosControllerTests.cs",
+              "RelativeDocumentMoniker": "TeamFinder.Tests\\UsuariosControllerTests.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\UsuariosControllerTests.cs",
+              "RelativeToolTip": "TeamFinder.Tests\\UsuariosControllerTests.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwCYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T15:12:49.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomWebApplicationFactory.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\CustomWebApplicationFactory.cs",
+              "RelativeDocumentMoniker": "TeamFinder.Tests\\CustomWebApplicationFactory.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\TeamFinder.Tests\\CustomWebApplicationFactory.cs",
+              "RelativeToolTip": "TeamFinder.Tests\\CustomWebApplicationFactory.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBgAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T15:02:41.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EventoGaming.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Models\\EventoGaming.cs",
+              "RelativeDocumentMoniker": "Models\\EventoGaming.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Models\\EventoGaming.cs",
+              "RelativeToolTip": "Models\\EventoGaming.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T00:11:21.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TeamFinderDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Data\\TeamFinderDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Data\\TeamFinderDbContext.cs",
+              "RelativeToolTip": "Data\\TeamFinderDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T04:20:47.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Match.cs",
-              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\Match.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Models\\Match.cs",
               "RelativeDocumentMoniker": "Models\\Match.cs",
-              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\Match.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Models\\Match.cs",
               "RelativeToolTip": "Models\\Match.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -46,29 +156,12 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EventoGaming.cs",
-              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\EventoGaming.cs",
-              "RelativeDocumentMoniker": "Models\\EventoGaming.cs",
-              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\EventoGaming.cs",
-              "RelativeToolTip": "Models\\EventoGaming.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T00:11:21.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\appsettings.json",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -76,27 +169,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Program.cs",
+              "ToolTip": "C:\\Users\\UTS2025\\Documents\\TeamFinder\\TeamFinder\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T04:21:02.555Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TeamFinderDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Data\\TeamFinderDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
-              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Data\\TeamFinderDbContext.cs",
-              "RelativeToolTip": "Data\\TeamFinderDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T04:20:47.597Z"
             }
           ]
         }

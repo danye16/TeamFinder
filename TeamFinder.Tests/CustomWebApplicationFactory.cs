@@ -7,7 +7,7 @@ using TeamFinder.Api.Data;
 
 namespace TeamFinder.Tests
 {
-    public class CustomWebApplicationFactory<TProgram> 
+    public class CustomWebApplicationFactory<TProgram>
         : WebApplicationFactory<TProgram> where TProgram : class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -15,48 +15,42 @@ namespace TeamFinder.Tests
             builder.ConfigureServices(services =>
             {
                 // --------------------------------------------------------
-                // PASO 1: ELIMINAR LA CONFIGURACIÓN EXISTENTE (SQL SERVER)
+                // PASO 1: LIMPIEZA TOTAL DE SQL SERVER
                 // --------------------------------------------------------
-                
-                // Buscamos las opciones del DbContext (la configuración)
-                var descriptorOptions = services.SingleOrDefault(
-                    d => d.ServiceType == typeof(DbContextOptions<TeamFinderDbContext>));
 
-                if (descriptorOptions != null)
+                // Buscamos TODOS los servicios de base de datos, incluyendo la opción genérica
+                var descriptorsToRemove = services.Where(d =>
+                    d.ServiceType == typeof(DbContextOptions<TeamFinderDbContext>) ||
+                    d.ServiceType == typeof(DbContextOptions) ||
+                    d.ServiceType == typeof(TeamFinderDbContext))
+                    .ToList();
+
+                // Los eliminamos todos para dejar el contenedor limpio
+                foreach (var descriptor in descriptorsToRemove)
                 {
-                    services.Remove(descriptorOptions);
-                }
-
-                // Buscamos el DbContext en sí (la clase) - ¡ESTO ES LO QUE FALTABA!
-                var descriptorContext = services.SingleOrDefault(
-                    d => d.ServiceType == typeof(TeamFinderDbContext));
-
-                if (descriptorContext != null)
-                {
-                    services.Remove(descriptorContext);
+                    services.Remove(descriptor);
                 }
 
                 // --------------------------------------------------------
-                // PASO 2: AGREGAR LA NUEVA BASE DE DATOS (EN MEMORIA)
+                // PASO 2: AGREGAR IN-MEMORY DB
                 // --------------------------------------------------------
-                
+
                 services.AddDbContext<TeamFinderDbContext>(options =>
                 {
-                    // Usamos un nombre único para asegurar aislamiento
                     options.UseInMemoryDatabase("InMemoryDbForIntegration");
+                    // Ignoramos advertencias de transacciones
+                    options.ConfigureWarnings(x => x.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.InMemoryEventId.TransactionIgnoredWarning));
                 });
 
                 // --------------------------------------------------------
-                // PASO 3: ASEGURAR QUE SE CREE LA BASE DE DATOS
+                // PASO 3: INICIALIZAR LA BASE DE DATOS
                 // --------------------------------------------------------
-                
+
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
                     var db = scopedServices.GetRequiredService<TeamFinderDbContext>();
-                    
-                    // Esto crea la estructura de tablas en la memoria
                     db.Database.EnsureCreated();
                 }
             });
