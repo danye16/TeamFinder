@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|c:\\users\\danye\\downloads\\tareas\\apiteamfinder\\teamfinder\\models\\eventogaming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B5E4EEF-42A1-499D-50BC-0FAD0D349742}|TeamFinder.csproj|solutionrelative:models\\eventogaming.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,15 +30,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Match.cs",
+              "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\Match.cs",
+              "RelativeDocumentMoniker": "Models\\Match.cs",
+              "ToolTip": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\Match.cs",
+              "RelativeToolTip": "Models\\Match.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-09T04:59:47.722Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EventoGaming.cs",
               "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Models\\EventoGaming.cs",
               "RelativeDocumentMoniker": "Models\\EventoGaming.cs",
@@ -47,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -59,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TeamFinderDbContext.cs",
               "DocumentMoniker": "C:\\Users\\danye\\Downloads\\Tareas\\ApiTeamfinder\\TeamFinder\\Data\\TeamFinderDbContext.cs",
               "RelativeDocumentMoniker": "Data\\TeamFinderDbContext.cs",
