@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     # 3. Restaurar dependencias
     - name: Restore dependencies
@@ -41,16 +41,16 @@ jobs:
     # Creamos un app_offline.htm y lo subimos. Esto libera los archivos .dll en Somee.
     - name: Stop App (Upload app_offline.htm)
       run: |
-        echo "<html><head><title>Mantenimiento</title></head><body><h1>Sitio en mantenimiento, volvemos pronto...</h1></body></html>" > app_offline.htm
-        # Subimos el archivo usando curl. Ajustamos la ruta según tu 'server-dir'.
-        curl -T app_offline.htm -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv1.somee.com/
+        echo "<html>...</html>" > app_offline.htm
+        # Asegúrate de que esta URL coincida con la del paso 8
+        curl -T app_offline.htm -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/
 
-    # 7. Publicar (Generar archivos DLL)
+    # 7. Publicar 
     - name: Publish
-      run: dotnet publish TeamFinderApiv1/TeamFinderApiv1.csproj -c Release -o ./publish
+      # Ajusta la ruta ./TeamFinder.csproj si está dentro de una carpeta
+      run: dotnet publish TeamFinder.csproj -c Release -o ./publish
 
-    # 8. Desplegar Archivos (Deploy)
-    # Sobrescribe los archivos de la aplicación.
+    # 8. Desplegar Archivos 
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -60,8 +60,7 @@ jobs:
         local-dir: ./publish/
         server-dir: /www.TeamFinderApiv2.somee.com/
 
-    # 9. ARRANCAR SERVIDOR (Start)
-    # Borramos el app_offline.htm para que el sitio vuelva a funcionar.
+    # 9. ARRANCAR SERVIDOR 
     - name: Start App (Remove app_offline.htm)
       run: |
-        curl -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv1.somee.com/ -Q "-DELE app_offline.htm"
+        curl -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }}/www.TeamFinderApiv2.somee.com/ -Q "-DELE app_offline.htm"
