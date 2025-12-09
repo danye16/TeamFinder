@@ -86,7 +86,7 @@ namespace TeamFinder.Api.Controllers
             // 3. Comparamos los hashes
             if (usuario.Contraseña != hashIntento)
             {
-                return Unauthorized("Contraseña mal.");
+                return Unauthorized("Contraseña Incorrecta.");
             }
 
             // 4. Si todo coincide, devolvemos el usuario
