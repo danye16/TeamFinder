@@ -35,7 +35,7 @@ jobs:
       # PASO 2: BEGIN (Aquí se resuelven los errores de 'projectKey' y 'organization')
       - name: SonarScanner Begin
         # Usamos 'run' para ejecutar el comando directo
-        run: dotnet sonarscanner begin /k:"CLAVE_DE_TU_PROYECTO" /o:"ORGANIZACION_DE_SONAR" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        run: dotnet sonarscanner begin /k:"CLAVE_DE_TU_PROYECTO" /o:"danye16" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
         env:
           # Solo se necesita SONAR_TOKEN y GITHUB_TOKEN para la autenticación
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
