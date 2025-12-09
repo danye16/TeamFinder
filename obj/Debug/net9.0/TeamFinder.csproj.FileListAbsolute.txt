@@ -487,3 +487,12 @@ C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.sour
 C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.dll
 C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\refint\TeamFinder.dll
 C:\Users\sebas\Desktop\proyectoTadeo\TeamFinder\obj\Debug\net9.0\TeamFinder.pdb
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.csproj.AssemblyReference.cache
+D:\TeamFinder\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.GeneratedMSBuildEditorConfig.editorconfig
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.csproj.CoreCompileInputs.cache
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.MvcApplicationPartsAssemblyInfo.cs
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.MvcApplicationPartsAssemblyInfo.cache
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.RazorAssemblyInfo.cache
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.RazorAssemblyInfo.cs
+D:\TeamFinder\obj\Debug\net9.0\TeamFinder.sourcelink.json

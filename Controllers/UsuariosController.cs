@@ -13,11 +13,9 @@ namespace TeamFinder.Api.Controllers
     {
         private readonly TeamFinderDbContext _context;
 
-        //COMENTARIO NUEVO: DTO para el login con Steam
-        //COMENTARIO NUEVO X2
         public class SteamLoginDto
         {
-            public string SteamId { get; set; }
+            public string? SteamId { get; set; }
         }
         public UsuariosController(TeamFinderDbContext context)
         {
