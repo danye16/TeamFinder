@@ -43,4 +43,6 @@ jobs:
         
       # PASO 4: END (CORREGIDO: Se añade el token al comando)
       - name: SonarScanner End
-        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: dotnet sonarscanner end /d:sonar.token="%SONAR_TOKEN%"
