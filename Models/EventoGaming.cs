@@ -2,6 +2,7 @@
 
 namespace TeamFinder.Api.Models
 {
+    // sonar
     public class EventoGaming
     {
         [Key]
