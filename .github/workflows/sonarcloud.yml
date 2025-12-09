@@ -43,7 +43,7 @@ jobs:
           
       # PASO 3: BUILD (Tu compilación normal)
       - name: Build
-        run: dotnet build MiApi.csproj --configuration Release
+        run: dotnet build MiSolucion.sln --configuration Release
         
       # PASO 4: END (Finaliza el análisis y sube los resultados)
       - name: SonarScanner End
