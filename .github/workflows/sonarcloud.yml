@@ -12,15 +12,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Code (Necesario para el análisis de código)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Se recomienda usar la versión más reciente
         with:
           # Necesario para que Sonar tenga el historial completo
           fetch-depth: 0 
 
-      - name: Set up .NET (Versión 6.x)
+      # CORRECCIÓN: Cambiado de '6.x' a '9.x' para que coincida con tu proyecto
+      - name: Set up .NET (Versión 9.x)
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.x'
+          dotnet-version: '9.x'
           
       - name: Setup Java 17 (El Scanner de Sonar lo requiere)
         uses: actions/setup-java@v4
@@ -32,22 +33,14 @@ jobs:
       - name: Install SonarScanner Tool
         run: dotnet tool install --global dotnet-sonarscanner
 
-      # PASO 2: BEGIN (Aquí se resuelven los errores de 'projectKey' y 'organization')
+      # PASO 2: BEGIN (Paso correcto)
       - name: SonarScanner Begin
-        # Usamos 'run' para ejecutar el comando directo
         run: dotnet sonarscanner begin /k:"CLAVE_DE_TU_PROYECTO" /o:"danye16" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        env:
-          # Solo se necesita SONAR_TOKEN y GITHUB_TOKEN para la autenticación
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       # PASO 3: BUILD (Tu compilación normal)
       - name: Build
         run: dotnet build TeamFinder.sln --configuration Release
         
-      # PASO 4: END (Finaliza el análisis y sube los resultados)
+      # PASO 4: END (CORREGIDO: Se añade el token al comando)
       - name: SonarScanner End
-        run: dotnet sonarscanner end
-        
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
