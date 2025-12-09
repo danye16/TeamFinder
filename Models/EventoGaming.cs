@@ -3,7 +3,8 @@
 namespace TeamFinder.Api.Models
 {
     // sonar
-    //escaner
+    //escaner 
+    //pruebas
     public class EventoGaming
     {
         [Key]
