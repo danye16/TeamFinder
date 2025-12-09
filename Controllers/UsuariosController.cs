@@ -76,7 +76,7 @@ namespace TeamFinder.Api.Controllers
 
             if (usuario == null)
             {
-                return Unauthorized("Usuario no encontrado.");
+                return Unauthorized("Usuario no existe.");
             }
 
             // 2. Generamos el hash de la contraseña que nos enviaron 
